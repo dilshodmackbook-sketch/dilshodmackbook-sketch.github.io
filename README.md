@@ -177,3 +177,4 @@ Production build (gzipped):
 ## Litsenziya
 
 MIT — bemalol ishlatishingiz, modify qilishingiz mumkin.
+# dilshodmackbook-sketch.github.io
