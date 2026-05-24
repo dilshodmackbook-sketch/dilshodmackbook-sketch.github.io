@@ -1,0 +1,250 @@
+{
+  "nav": {
+    "home": "Главная",
+    "about": "Обо мне",
+    "experience": "Опыт",
+    "projects": "Проекты",
+    "skills": "Навыки",
+    "blog": "Блог",
+    "contact": "Контакты",
+    "resume": "Резюме"
+  },
+  "hero": {
+    "greeting": "Привет, я Дилшод",
+    "role": "Senior Frontend-инженер",
+    "titles": [
+      "Frontend-инженер",
+      "React-специалист",
+      "Vue.js разработчик",
+      "Мастер UI/UX"
+    ],
+    "description": "Создаю производительные, доступные и тщательно сделанные веб-приложения. Сейчас фрилансю на GitHub для Expensify и развиваю платформу Quantum ELD в Longhorn Logistics.",
+    "ctaPrimary": "Посмотреть работы",
+    "ctaSecondary": "Связаться",
+    "scrollHint": "Прокрутите вниз",
+    "stats": {
+      "yearsLabel": "Лет опыта",
+      "projectsLabel": "Запущено проектов",
+      "companiesLabel": "Компаний",
+      "clientsLabel": "Довольных клиентов"
+    },
+    "availability": "Открыт к новым предложениям"
+  },
+  "about": {
+    "eyebrow": "Обо мне",
+    "title": "Создаю цифровые продукты с заботой о коде",
+    "p1": "Я Senior Frontend-инженер с 5 годами реального продакшн-опыта. Мой путь начался с HTML и CSS, а любопытство переросло в профессию.",
+    "p2": "Сегодня я работаю над платформой Quantum ELD в Longhorn Logistics — перестраиваю её на React-экосистеме (React Query, Tailwind, Vite, Radix UI) — и как фрилансер контрибьючу в open-source кодовую базу Expensify на GitHub.",
+    "p3": "Меня глубоко волнуют производительность, доступность и мелкие детали, которые отличают хорошие продукты от великих. Хороший UI невидим — он просто ощущается правильно.",
+    "currentlyAt": "Сейчас в",
+    "alsoAt": "Фриланс для",
+    "downloadCV": "Скачать резюме",
+    "locationLabel": "Локация",
+    "location": "Ташкент, Узбекистан",
+    "availabilityLabel": "Статус",
+    "availability": "Открыт к удалённой работе",
+    "languagesLabel": "Языки",
+    "languages": "Английский · Русский · Узбекский"
+  },
+  "experience": {
+    "eyebrow": "Опыт работы",
+    "title": "5 лет создания значимых продуктов",
+    "subtitle": "Таймлайн компаний, которым я помог вырасти, и продуктов, которые я помог запустить.",
+    "present": "Настоящее время",
+    "current": "Сейчас",
+    "jobs": {
+      "longhorn": {
+        "company": "Longhorn Logistics Group",
+        "role": "Frontend-разработчик — Quantum ELD",
+        "period": "Окт 2024 — настоящее время",
+        "location": "Ташкент, Узбекистан",
+        "description": "Создаю современную ELD-платформу для логистической индустрии США. Переписал фронтенд на React, React Query для серверного состояния, Tailwind для UI, Vite для быстрой сборки и Radix UI для доступных компонентов.",
+        "highlights": [
+          "Миграция легаси-фронтенда на современный React стек",
+          "Уменьшил размер бандла и улучшил Time to Interactive",
+          "Построил библиотеку переиспользуемых доступных компонентов",
+          "Реализовал оптимистичные обновления и слой кеширования"
+        ]
+      },
+      "expensify": {
+        "company": "Expensify (Open Source)",
+        "role": "Frontend-контрибьютор — Фриланс",
+        "period": "2025 — настоящее время",
+        "location": "Удалённо",
+        "description": "Контрибьючу в open-source React Native проект New Expensify на GitHub. Беру задачи, отправляю фиксы и работаю с мейнтейнерами над production-кодовой базой.",
+        "highlights": [
+          "Отправил PR в реальную кросс-платформенную кодовую базу",
+          "Работал с React Native, TypeScript и Onyx",
+          "Участвовал в код-ревью на масштабе"
+        ]
+      },
+      "zamonaviy": {
+        "company": "Zamonaviy Kommunikatsiyalar LLC",
+        "role": "Frontend-инженер",
+        "period": "Ноя 2021 — Сен 2024",
+        "location": "Ташкентская область, Узбекистан",
+        "description": "Проектировал и разрабатывал CRM-платформы, админ-панели и WMS-системы. Глубокая работа с Vue 2, Vue 3, Bootstrap-Vue и Nuxt 3. Доставлял масштабируемые решения под сложные бизнес-требования.",
+        "highlights": [
+          "Спроектировал несколько CRM и WMS дашбордов с нуля",
+          "Возглавил миграцию с Vue 2 на Vue 3 + Pinia",
+          "Создал дизайн-систему для нескольких внутренних продуктов"
+        ]
+      },
+      "prom": {
+        "company": "Prom.uz Маркетплейс",
+        "role": "Frontend-разработчик — Фриланс",
+        "period": "Мар 2024 — Май 2024",
+        "location": "Удалённо",
+        "description": "Разрабатывал e-commerce проекты с Nuxt 3 и Tailwind CSS Premium. Построил админ-дашборд Med24 и создал медицинские сайты для пациентов.",
+        "highlights": [
+          "Запустил Nuxt 3 storefront с SSR",
+          "Построил админ-дашборд Med24",
+          "Спроектировал адаптивные потоки для пациентов"
+        ]
+      },
+      "datasite": {
+        "company": "DataSite Technology",
+        "role": "Frontend-разработчик",
+        "period": "Янв 2021 — Май 2021",
+        "location": "Ташкент, Узбекистан",
+        "description": "Первая профессиональная роль. Создавал сайты и админ-дашборды на HTML, CSS, React, WordPress, Bootstrap и Sass. Фокус на адаптивный дизайн и интуитивный UX.",
+        "highlights": [
+          "Доставил несколько клиентских сайтов под ключ",
+          "Создал переиспользуемые WordPress темы",
+          "Освоил дисциплину доставки в дедлайны"
+        ]
+      }
+    }
+  },
+  "skills": {
+    "eyebrow": "Технологии",
+    "title": "Инструменты, которыми я строю продукты",
+    "subtitle": "Тщательно подобранный набор технологий, на которые я полагаюсь каждый день в продакшне.",
+    "categories": {
+      "frameworks": "Фреймворки и библиотеки",
+      "languages": "Языки",
+      "styling": "Стили и UI",
+      "state": "Состояние и данные",
+      "tooling": "Тулинг и сборка",
+      "platforms": "Платформы и инфра"
+    }
+  },
+  "projects": {
+    "eyebrow": "Избранное",
+    "title": "Проекты, которыми я горжусь",
+    "subtitle": "Production-работа, пет-проекты и open-source контрибьюшены.",
+    "viewProject": "Открыть проект",
+    "viewCode": "Открыть код",
+    "items": {
+      "quantum": {
+        "title": "Платформа Quantum ELD",
+        "description": "Современная ELD платформа для трекинговой индустрии США. Перестроил фронтенд на React, React Query, Tailwind и Radix UI.",
+        "role": "Frontend-инженер"
+      },
+      "expensify": {
+        "title": "New Expensify (Open Source)",
+        "description": "Контрибьюшены в open-source React Native приложение Expensify на GitHub. Фиксы под iOS, Android и Web.",
+        "role": "Open-source контрибьютор"
+      },
+      "med24": {
+        "title": "Админ-дашборд Med24",
+        "description": "Админ-панель для медицинской платформы на Nuxt 3 и Tailwind Premium. Упростила работу клиники, приёмы и данные пациентов.",
+        "role": "Frontend-разработчик"
+      },
+      "crm": {
+        "title": "Enterprise CRM",
+        "description": "Несколько CRM-платформ с нуля на Vue 3, Pinia и Bootstrap-Vue. Используются внутри компании в разных отделах.",
+        "role": "Lead Frontend"
+      },
+      "wms": {
+        "title": "Система управления складом",
+        "description": "Внутренняя WMS с потоками инвентаря, ролевым доступом и обновлениями в реальном времени. Vue 3 + Pinia + кастомный дизайн.",
+        "role": "Frontend-инженер"
+      },
+      "portfolio": {
+        "title": "Это портфолио",
+        "description": "Сайт, который вы смотрите. React 18, Vite, Tailwind, Framer Motion и i18next. Трёхъязычный, отзывчивый, тёмный модерн.",
+        "role": "Дизайнер и разработчик"
+      }
+    }
+  },
+  "blog": {
+    "eyebrow": "Записи",
+    "title": "Заметки с фронтенда",
+    "subtitle": "Уроки, разборы и паттерны из реальной разработки.",
+    "readMore": "Читать статью",
+    "readingTime": "{{minutes}} мин чтения",
+    "backToBlog": "Ко всем статьям",
+    "publishedOn": "Опубликовано",
+    "tableOfContents": "Содержание",
+    "noPosts": "Скоро будут новые статьи.",
+    "posts": {
+      "reactQuery": {
+        "title": "Почему React Query изменил моё мышление о состоянии",
+        "excerpt": "После лет с Redux и Vuex переход на React Query ощущался как удаление половины кодовой базы. Вот что я узнал.",
+        "date": "12 мая 2026"
+      },
+      "vueToReact": {
+        "title": "Миграция мозга с Vue на React",
+        "excerpt": "Три года я был глубоко в Vue. Переход на React full-time показал, что я действительно любил — и не любил.",
+        "date": "3 апреля 2026"
+      },
+      "tailwindReal": {
+        "title": "Tailwind в продакшне: 3 года спустя",
+        "excerpt": "Честное мнение о Tailwind после 10+ продакшн проектов. Хорошее, плохое и реально работающие паттерны.",
+        "date": "18 февраля 2026"
+      },
+      "viteVsWebpack": {
+        "title": "Я мигрировал 4 приложения с Webpack на Vite",
+        "excerpt": "Время сборки упало с 90 секунд до 2. Что сломалось, что я узнал и стоит ли вам это делать.",
+        "date": "7 января 2026"
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Связаться",
+    "title": "Давайте построим что-то великое",
+    "subtitle": "Есть проект, роль для обсуждения или просто хотите поздороваться? Мой ящик открыт.",
+    "form": {
+      "name": "Ваше имя",
+      "namePlaceholder": "Иван Иванов",
+      "email": "Email",
+      "emailPlaceholder": "ivan@example.com",
+      "subject": "Тема",
+      "subjectPlaceholder": "О чём речь?",
+      "message": "Сообщение",
+      "messagePlaceholder": "Расскажите о проекте, роли или идее...",
+      "submit": "Отправить",
+      "submitting": "Отправка...",
+      "success": "Сообщение отправлено! Отвечу в течение 24 часов.",
+      "error": "Что-то пошло не так. Напишите мне напрямую.",
+      "validation": {
+        "nameRequired": "Введите имя",
+        "emailRequired": "Введите email",
+        "emailInvalid": "Введите корректный email",
+        "messageRequired": "Напишите сообщение",
+        "messageShort": "Минимум 10 символов"
+      }
+    },
+    "directContact": "Или напишите напрямую",
+    "responseTime": "Обычно отвечаю в течение 24 часов",
+    "based": "Базируюсь в Ташкенте · Доступен удалённо по всему миру"
+  },
+  "footer": {
+    "tagline": "Сделано с заботой в Ташкенте.",
+    "builtWith": "Построено на React, Vite, Tailwind и Framer Motion.",
+    "rights": "Все права защищены.",
+    "sections": {
+      "navigation": "Навигация",
+      "social": "Соцсети",
+      "legal": "Правовое"
+    },
+    "scrollTop": "Наверх"
+  },
+  "common": {
+    "loading": "Загрузка...",
+    "notFound": "Страница не найдена",
+    "notFoundDesc": "Страница не существует или была перемещена.",
+    "goHome": "На главную"
+  }
+}

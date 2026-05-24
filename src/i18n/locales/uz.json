@@ -1,0 +1,250 @@
+{
+  "nav": {
+    "home": "Bosh sahifa",
+    "about": "Men haqimda",
+    "experience": "Tajriba",
+    "projects": "Loyihalar",
+    "skills": "Ko'nikmalar",
+    "blog": "Blog",
+    "contact": "Aloqa",
+    "resume": "Rezyume"
+  },
+  "hero": {
+    "greeting": "Salom, men Dilshod",
+    "role": "Senior Frontend muhandis",
+    "titles": [
+      "Frontend muhandis",
+      "React mutaxassisi",
+      "Vue.js dasturchi",
+      "UI/UX ustasi"
+    ],
+    "description": "Tezkor, qulay va puxta tayyorlangan veb-ilovalar yarataman. Hozirda GitHub'da Expensify uchun freelance qilaman va Longhorn Logistics'da Quantum ELD platformasini quryapman.",
+    "ctaPrimary": "Ishlarimni ko'rish",
+    "ctaSecondary": "Bog'lanish",
+    "scrollHint": "Pastga aylantiring",
+    "stats": {
+      "yearsLabel": "Yillik tajriba",
+      "projectsLabel": "Yetkazilgan loyihalar",
+      "companiesLabel": "Kompaniyalar",
+      "clientsLabel": "Mamnun mijozlar"
+    },
+    "availability": "Yangi imkoniyatlarga ochiqman"
+  },
+  "about": {
+    "eyebrow": "Men haqimda",
+    "title": "Kod va e'tibor bilan raqamli tajribalar yarataman",
+    "p1": "Men Senior Frontend muhandisman, 5 yillik real production tajribaga egaman. Yo'lim HTML va CSS dan boshlanib, qiziquvchanlik kasbga aylandi.",
+    "p2": "Bugun men Longhorn Logistics'dagi Quantum ELD platformasi ustida ishlayman — uni React ekotizimida qayta quryapman (React Query, Tailwind, Vite, Radix UI) — va freelancer sifatida Expensify'ning GitHub'dagi open-source kodbazasiga hissa qo'shaman.",
+    "p3": "Men ishlash unumdorligi, qulaylik va yaxshi mahsulotni a'lo darajadagidan ajratib turuvchi mayda detallarga jiddiy qarayman. Yaxshi UI ko'rinmaydi — u shunchaki to'g'ri his etiladi.",
+    "currentlyAt": "Hozir",
+    "alsoAt": "Freelance",
+    "downloadCV": "CV yuklab olish",
+    "locationLabel": "Manzil",
+    "location": "Toshkent, O'zbekiston",
+    "availabilityLabel": "Holat",
+    "availability": "Masofaviy ishga ochiqman",
+    "languagesLabel": "Tillar",
+    "languages": "Ingliz · Rus · O'zbek"
+  },
+  "experience": {
+    "eyebrow": "Ish tajribasi",
+    "title": "5 yil davomida muhim narsalar quraman",
+    "subtitle": "Men o'sishiga yordam bergan kompaniyalar va yetkazib bergan mahsulotlar taymlayni.",
+    "present": "Hozirgi vaqt",
+    "current": "Joriy",
+    "jobs": {
+      "longhorn": {
+        "company": "Longhorn Logistics Group",
+        "role": "Frontend Developer — Quantum ELD",
+        "period": "Okt 2024 — Hozirgi vaqt",
+        "location": "Toshkent, O'zbekiston",
+        "description": "AQSh logistika sanoati uchun zamonaviy ELD platformasini yaratyapman. Frontend'ni React, React Query, Tailwind, Vite va Radix UI bilan qayta yozdim. Ishlash, qo'llab-quvvatlash va UX'ni sezilarli darajada yaxshiladim.",
+        "highlights": [
+          "Legacy frontend'ni zamonaviy React stack'iga ko'chirish",
+          "Bundle hajmini kamaytirdim va Time to Interactive'ni yaxshiladim",
+          "Qayta ishlatiluvchi qulay komponentlar kutubxonasini qurdim",
+          "Optimistik yangilanishlar va caching qatlamini joriy qildim"
+        ]
+      },
+      "expensify": {
+        "company": "Expensify (Open Source)",
+        "role": "Frontend Contributor — Freelance",
+        "period": "2025 — Hozirgi vaqt",
+        "location": "Masofaviy",
+        "description": "GitHub'da Expensify'ning open-source React Native loyihasiga hissa qo'shaman. Vazifalarni olaman, fix yuboraman va maintainerlar bilan ishlayman.",
+        "highlights": [
+          "Real cross-platform kodbazaga PR yubordim",
+          "React Native, TypeScript va Onyx bilan ishladim",
+          "Katta miqyosli code review'da qatnashdim"
+        ]
+      },
+      "zamonaviy": {
+        "company": "Zamonaviy Kommunikatsiyalar MChJ",
+        "role": "Frontend muhandis",
+        "period": "Noy 2021 — Sen 2024",
+        "location": "Toshkent viloyati, O'zbekiston",
+        "description": "CRM platformalari, admin paneller va WMS tizimlarini loyihaladim va ishlab chiqdim. Vue 2, Vue 3, Bootstrap-Vue va Nuxt 3 bilan chuqur ishladim.",
+        "highlights": [
+          "Bir nechta CRM va WMS dashboardlarni noldan loyihaladim",
+          "Vue 2 dan Vue 3 + Pinia'ga ko'chishni boshqardim",
+          "Bir nechta ichki mahsulotlarda ishlatilgan dizayn tizimi qurdim"
+        ]
+      },
+      "prom": {
+        "company": "Prom.uz Bozor",
+        "role": "Frontend Developer — Freelance",
+        "period": "Mar 2024 — May 2024",
+        "location": "Masofaviy",
+        "description": "Nuxt 3 va Tailwind CSS Premium bilan e-commerce loyihalar yaratdim. Med24 uchun admin dashboard va bemorlarga mo'ljallangan tibbiy saytlar qurdim.",
+        "highlights": [
+          "SSR bilan Nuxt 3 storefront yetkazib berdim",
+          "Med24 admin dashboard qurdim",
+          "Bemorlar uchun moslashuvchan oqimlarni loyihaladim"
+        ]
+      },
+      "datasite": {
+        "company": "DataSite Technology",
+        "role": "Frontend Developer",
+        "period": "Yan 2021 — May 2021",
+        "location": "Toshkent, O'zbekiston",
+        "description": "Birinchi professional rol. HTML, CSS, React, WordPress, Bootstrap va Sass bilan saytlar va admin dashboardlar qurdim.",
+        "highlights": [
+          "Bir nechta mijoz saytlarini to'liq yetkazdim",
+          "Qayta ishlatiluvchi WordPress mavzular qurdim",
+          "Muddat ichida yetkazib berish intizomini o'rgandim"
+        ]
+      }
+    }
+  },
+  "skills": {
+    "eyebrow": "Tech stack",
+    "title": "Ajoyib mahsulotlar yaratish uchun ishlatadigan vositalarim",
+    "subtitle": "Har kuni production'da tayanadigan tanlangan texnologiyalar to'plami.",
+    "categories": {
+      "frameworks": "Frameworklar va kutubxonalar",
+      "languages": "Tillar",
+      "styling": "Styling va UI",
+      "state": "State va ma'lumotlar",
+      "tooling": "Tooling va build",
+      "platforms": "Platformalar va infra"
+    }
+  },
+  "projects": {
+    "eyebrow": "Tanlangan ishlar",
+    "title": "Faxrlanadigan loyihalarim",
+    "subtitle": "Production ishlari, side loyihalar va open-source hissalar.",
+    "viewProject": "Loyihani ko'rish",
+    "viewCode": "Kodni ko'rish",
+    "items": {
+      "quantum": {
+        "title": "Quantum ELD Platformasi",
+        "description": "AQSh yuk tashish sanoati uchun zamonaviy ELD platformasi. Frontend React, React Query, Tailwind va Radix UI bilan qayta qurildi.",
+        "role": "Frontend muhandis"
+      },
+      "expensify": {
+        "title": "New Expensify (Open Source)",
+        "description": "GitHub'da Expensify open-source React Native ilovasiga hissa. iOS, Android va Web uchun fixlar.",
+        "role": "Open-source contributor"
+      },
+      "med24": {
+        "title": "Med24 Admin Dashboard",
+        "description": "Nuxt 3 va Tailwind Premium bilan qurilgan tibbiy platforma uchun admin paneli. Klinika operatsiyalari va bemor ma'lumotlarini soddalashtirdi.",
+        "role": "Frontend Developer"
+      },
+      "crm": {
+        "title": "Enterprise CRM Suite",
+        "description": "Vue 3, Pinia va Bootstrap-Vue bilan noldan loyihalashtirilgan bir nechta CRM platformalari. Ichki turli bo'limlarda ishlatiladi.",
+        "role": "Lead Frontend"
+      },
+      "wms": {
+        "title": "Ombor Boshqaruv Tizimi",
+        "description": "Murakkab inventarizatsiya, rol asosidagi kirish va real vaqt yangilanishlari bilan ichki WMS. Vue 3 + Pinia + custom design.",
+        "role": "Frontend muhandis"
+      },
+      "portfolio": {
+        "title": "Bu portfolio",
+        "description": "Siz ko'rib turgan sayt. React 18, Vite, Tailwind, Framer Motion va i18next bilan qurilgan. Uch tilli, to'liq responsiv, dark-modern.",
+        "role": "Dizayner va dasturchi"
+      }
+    }
+  },
+  "blog": {
+    "eyebrow": "Yozuvlar",
+    "title": "Frontend'dan eslatmalar",
+    "subtitle": "Real mahsulotlar yaratishdagi saboqlar, chuqur tahlillar va patternlar.",
+    "readMore": "Maqolani o'qish",
+    "readingTime": "{{minutes}} daqiqa o'qish",
+    "backToBlog": "Barcha maqolalarga",
+    "publishedOn": "Nashr etilgan",
+    "tableOfContents": "Mundarija",
+    "noPosts": "Tez orada yangi maqolalar.",
+    "posts": {
+      "reactQuery": {
+        "title": "Nima uchun React Query state haqida fikrlashimni o'zgartirdi",
+        "excerpt": "Redux va Vuex bilan yillarcha ishlagandan keyin React Query'ga o'tish kodbazamning yarmini o'chirgandek tuyuldi. Mana nima o'rgandim.",
+        "date": "12 may 2026"
+      },
+      "vueToReact": {
+        "title": "Miyamning Vue'dan React'ga ko'chishi",
+        "excerpt": "Men 3 yil Vue'da chuqur edim. React'ga to'liq o'tish menga nimani yoqtirganimni — va nimani yoqtirmaganimni o'rgatdi.",
+        "date": "3 aprel 2026"
+      },
+      "tailwindReal": {
+        "title": "Tailwind production'da: 3 yildan keyin",
+        "excerpt": "10+ production loyihalarda ishlatgandan keyin Tailwind haqida halol fikrlar. Yaxshi, yomon va aslida ishlaydigan patternlar.",
+        "date": "18 fevral 2026"
+      },
+      "viteVsWebpack": {
+        "title": "4 ta ilovani Webpack'dan Vite'ga ko'chirdim",
+        "excerpt": "Build vaqti 90 soniyadan 2 soniyaga tushdi. Nima sindi, nima o'rgandim va siz buni qilishingiz kerakmi.",
+        "date": "7 yanvar 2026"
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Bog'lanish",
+    "title": "Birgalikda ajoyib narsa quraylik",
+    "subtitle": "Loyihangiz, ish o'rni yoki shunchaki salom aytmoqchimisiz? Mening pochtam ochiq.",
+    "form": {
+      "name": "Ismingiz",
+      "namePlaceholder": "Ali Valiyev",
+      "email": "Email",
+      "emailPlaceholder": "ali@example.com",
+      "subject": "Mavzu",
+      "subjectPlaceholder": "Nima haqida?",
+      "message": "Xabar",
+      "messagePlaceholder": "Loyihangiz, ish o'rni yoki g'oyangiz haqida...",
+      "submit": "Yuborish",
+      "submitting": "Yuborilmoqda...",
+      "success": "Xabar yuborildi! 24 soat ichida javob beraman.",
+      "error": "Xatolik yuz berdi. Iltimos, to'g'ridan-to'g'ri yozing.",
+      "validation": {
+        "nameRequired": "Ismingizni kiriting",
+        "emailRequired": "Email kiriting",
+        "emailInvalid": "To'g'ri email kiriting",
+        "messageRequired": "Xabar yozing",
+        "messageShort": "Kamida 10 ta belgi"
+      }
+    },
+    "directContact": "Yoki to'g'ridan-to'g'ri yozing",
+    "responseTime": "Odatda 24 soat ichida javob beraman",
+    "based": "Toshkentda joylashganman · Butun dunyo bo'ylab masofaviy ishlayman"
+  },
+  "footer": {
+    "tagline": "Toshkentda e'tibor bilan tayyorlangan.",
+    "builtWith": "React, Vite, Tailwind va Framer Motion bilan qurilgan.",
+    "rights": "Barcha huquqlar himoyalangan.",
+    "sections": {
+      "navigation": "Navigatsiya",
+      "social": "Ijtimoiy",
+      "legal": "Huquqiy"
+    },
+    "scrollTop": "Yuqoriga"
+  },
+  "common": {
+    "loading": "Yuklanmoqda...",
+    "notFound": "Sahifa topilmadi",
+    "notFoundDesc": "Siz qidirayotgan sahifa mavjud emas yoki ko'chirilgan.",
+    "goHome": "Bosh sahifaga"
+  }
+}
