@@ -226,7 +226,7 @@ function HeroVisual() {
             <div className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
             <span className="ml-2 text-xs text-zinc-500 font-mono">developer.tsx</span>
           </div>
-          <div className="p-4 font-mono text-xs leading-relaxed">
+          <div className="p-3 font-mono text-xs leading-relaxed">
             <div className="text-zinc-500">
               <span className="text-accent-pink">const</span>{' '}
               <span className="text-accent-cyan">dev</span> = {'{'}
@@ -241,8 +241,9 @@ function HeroVisual() {
             </div>
             <div className="pl-4">
               <span className="text-accent-violet">stack</span>: [
-              <span className="text-accent-amber">'React'</span>,{' '}
-              <span className="text-accent-amber">'Vue'</span>],
+              <span className="text-accent-amber">'React'</span>,
+              <span className="text-accent-amber">'Vue'</span>,
+              <span className="text-accent-amber">'Angular'</span>],
             </div>
             <div className="pl-4">
               <span className="text-accent-violet">years</span>:{' '}
