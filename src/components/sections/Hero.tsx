@@ -1,285 +1,215 @@
-import type { ReactNode } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState, type MouseEvent } from 'react'
 import { useTranslation } from 'react-i18next'
-import { motion } from 'framer-motion'
-import {
-  ArrowRight,
-  ArrowDown,
-  Github,
-  Linkedin,
-  Mail,
-  MapPin,
-  Sparkles,
-} from 'lucide-react'
-import { useTypewriter } from '../../hooks/useTypewriter'
-import StatsBar from './StatsBar'
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
+import { ArrowUpRight, ArrowDown, MapPin } from 'lucide-react'
+import Marquee from '../utils/Marquee'
+import { heroStack } from '../../data/skills'
+import { scrollToTarget } from '../../lib/scroll'
+import { gsap, ScrollTrigger } from '../../lib/gsap'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay: i * 0.08, ease: 'easeOut' },
-  }),
+const HeroField = lazy(() => import('./HeroField'))
+
+const ease = [0.16, 1, 0.3, 1] as const
+
+function Line({ children, delay, className = '' }: { children: React.ReactNode; delay: number; className?: string }) {
+  return (
+    <span className={`block overflow-hidden ${className}`}>
+      <motion.span
+        initial={{ y: '110%' }}
+        animate={{ y: 0 }}
+        transition={{ duration: 1.1, ease, delay }}
+        className="block"
+      >
+        {children}
+      </motion.span>
+    </span>
+  )
 }
 
 export default function Hero() {
   const { t } = useTranslation()
-  const titles = t('hero.titles', { returnObjects: true }) as string[]
-  const typed = useTypewriter(titles, { typingSpeed: 90, deletingSpeed: 45, pause: 1800 })
+  const ref = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
+  const nameY = useTransform(scrollYProgress, [0, 1], [0, 140])
+  const nameOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
+  const gridY = useTransform(scrollYProgress, [0, 1], [0, -80])
+  const fieldOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
+  const marqueeRef = useRef<HTMLDivElement>(null)
+  const [showField, setShowField] = useState(false)
 
-  const scrollTo = (id: string) => {
-    const el = document.querySelector(id)
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  useEffect(() => {
+    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+    if (!reduce) setShowField(true)
+  }, [])
+
+  // Marquee skews with scroll velocity, then settles back
+  useEffect(() => {
+    const el = marqueeRef.current
+    if (!el) return
+    const skew = gsap.quickTo(el, 'skewX', { duration: 0.5, ease: 'power3.out' })
+    let settle: gsap.core.Tween | undefined
+    const st = ScrollTrigger.create({
+      onUpdate: (self) => {
+        skew(gsap.utils.clamp(-14, 14, self.getVelocity() / -220))
+        settle?.kill()
+        settle = gsap.delayedCall(0.12, () => skew(0))
+      },
+    })
+    return () => {
+      st.kill()
+      settle?.kill()
+    }
+  }, [])
+
+  const mx = useMotionValue(0)
+  const my = useMotionValue(0)
+  const sx = useSpring(mx, { stiffness: 60, damping: 20 })
+  const sy = useSpring(my, { stiffness: 60, damping: 20 })
+  const onMove = (e: MouseEvent<HTMLElement>) => {
+    const r = ref.current?.getBoundingClientRect()
+    if (!r) return
+    mx.set(e.clientX - r.left)
+    my.set(e.clientY - r.top)
   }
+
+  const meta = [
+    { label: t('hero.meta.roleLabel'), value: t('hero.role') },
+    { label: t('hero.meta.basedLabel'), value: t('hero.location') },
+    { label: t('hero.meta.focusLabel'), value: t('hero.meta.focus') },
+    { label: t('hero.meta.experienceLabel'), value: t('hero.meta.experience') },
+  ]
 
   return (
     <section
-      id="home"
-      className="relative min-h-screen flex items-center pt-20 md:pt-24 pb-16"
+      ref={ref}
+      onMouseMove={onMove}
+      className="relative flex min-h-[100svh] flex-col overflow-hidden pt-16 md:pt-[4.5rem]"
     >
-      <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center">
-          {/* Left column — copy */}
-          <div className="lg:col-span-7 order-1 lg:order-1">
-            {/* Availability pill */}
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              custom={0}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-accent-green/30 text-xs font-medium text-text-secondary mb-6"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-green opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-green" />
-              </span>
-              {t('hero.availability')}
-            </motion.div>
+      {/* Background: three.js dot field + grid + mouse spotlight */}
+      <motion.div style={{ opacity: fieldOpacity }} aria-hidden className="pointer-events-none absolute inset-0 mask-fade-y">
+        {showField && (
+          <Suspense fallback={null}>
+            <HeroField />
+          </Suspense>
+        )}
+      </motion.div>
+      <motion.div
+        style={{ y: gridY }}
+        aria-hidden
+        className="bg-grid mask-fade-y pointer-events-none absolute inset-0 opacity-60 [--grid-cell:48px] md:[--grid-cell:72px]"
+      />
+      <motion.div
+        aria-hidden
+        style={{ x: sx, y: sy }}
+        className="pointer-events-none absolute left-0 top-0 -ml-[20rem] -mt-[20rem] h-[40rem] w-[40rem] rounded-full bg-glow/[0.14] blur-[120px] dark:bg-glow/[0.16]"
+      />
 
-            {/* Greeting */}
-            <motion.p
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              custom={1}
-              className="text-text-secondary font-mono mb-3 flex items-center gap-2"
-            >
-              <Sparkles className="w-4 h-4 text-accent-violet" />
-              {t('hero.greeting')}
-            </motion.p>
-
-            {/* Big title */}
-            <motion.h1
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              custom={2}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-display-1 font-extrabold text-balance mb-3 leading-[1.05]"
-            >
-              <span className="text-text-primary">Dilshod</span>{' '}
-              <span className="gradient-text">Bunyodov</span>
-            </motion.h1>
-
-            {/* Typewriter */}
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              custom={3}
-              className="text-xl md:text-2xl text-text-secondary font-mono mb-6 min-h-[2.5rem]"
-            >
-              <span className="text-accent-cyan">{'<'}</span>
-              <span className="terminal-text">{typed}</span>
-              <span className="text-accent-cyan">{' />'}</span>
-            </motion.div>
-
-            {/* Description */}
-            <motion.p
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              custom={4}
-              className="text-text-secondary text-base md:text-lg max-w-2xl text-pretty mb-8 leading-relaxed"
-            >
-              {t('hero.description')}
-            </motion.p>
-
-            {/* CTA */}
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              custom={5}
-              className="flex flex-wrap items-center gap-3 mb-10"
-            >
-              <button onClick={() => scrollTo('#projects')} className="btn-primary group">
-                {t('hero.ctaPrimary')}
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </button>
-              <button onClick={() => scrollTo('#contact')} className="btn-secondary">
-                {t('hero.ctaSecondary')}
-              </button>
-            </motion.div>
-
-            {/* Location + socials */}
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              custom={6}
-              className="flex flex-wrap items-center gap-5 text-sm text-text-muted"
-            >
-              <span className="flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5" />
-                Tashkent, Uzbekistan
-              </span>
-              <div className="flex items-center gap-2">
-                <a
-                  href="https://github.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-2 rounded-lg hover:bg-bg-card hover:text-text-primary transition-colors"
-                  aria-label="GitHub"
-                >
-                  <Github className="w-4 h-4" />
-                </a>
-                <a
-                  href="https://linkedin.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-2 rounded-lg hover:bg-bg-card hover:text-text-primary transition-colors"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin className="w-4 h-4" />
-                </a>
-                <a
-                  href="mailto:dilshodbunyodov2020@gmail.com"
-                  className="p-2 rounded-lg hover:bg-bg-card hover:text-text-primary transition-colors"
-                  aria-label="Email"
-                >
-                  <Mail className="w-4 h-4" />
-                </a>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right column — visual */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="lg:col-span-5 order-2 lg:order-2 flex justify-center"
-          >
-            <HeroVisual />
-          </motion.div>
-        </div>
-
-        {/* Stats bar */}
+      <div className="container-site relative flex flex-1 flex-col justify-center py-12 md:py-20">
+        {/* Status row */}
         <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={8}
-          className="mt-16 md:mt-20"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease, delay: 0.3 }}
+          className="flex flex-wrap items-center gap-x-5 gap-y-2"
         >
-          <StatsBar />
+          <span className="inline-flex items-center gap-2 rounded-full border border-line/[0.12] py-1.5 pl-2.5 pr-3.5 text-[11px] tracking-tight text-muted">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-70" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            {t('hero.status')}
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-[11px] tracking-tight text-faint">
+            <MapPin className="h-3 w-3" />
+            {t('hero.role')} · {t('hero.location')}
+          </span>
         </motion.div>
 
-        {/* Scroll hint */}
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          onClick={() => scrollTo('#about')}
-          className="hidden md:flex absolute left-1/2 bottom-2 -translate-x-1/2 flex-col items-center gap-2 text-text-muted hover:text-text-primary transition-colors group"
+        {/* Name */}
+        <motion.h1
+          style={{ y: nameY, opacity: nameOpacity }}
+          className="mt-8 font-extrabold uppercase leading-[0.86] tracking-tightest md:mt-10"
         >
-          <span className="text-[10px] font-mono uppercase tracking-widest">
-            {t('hero.scrollHint')}
-          </span>
-          <ArrowDown className="w-4 h-4 animate-bounce" />
-        </motion.button>
-      </div>
-    </section>
-  )
-}
+          <span className="sr-only">Dilshod Bunyodov — {t('hero.role')}</span>
+          <Line delay={0.35} className="text-[clamp(3.2rem,13.5vw,10.5rem)]">
+            <span aria-hidden>{t('hero.firstName')}</span>
+          </Line>
+          <Line delay={0.5} className="text-[clamp(3.2rem,13.5vw,10.5rem)]">
+            <span aria-hidden className="text-outline">
+              {t('hero.lastName')}
+            </span>
+          </Line>
+        </motion.h1>
 
-function HeroVisual() {
-  return (
-    <div className="relative w-full max-w-[280px] sm:max-w-sm md:max-w-md aspect-square">
-      {/* Orbit rings */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-full border border-border/40" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 rounded-full border border-border/30" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 rounded-full border border-border/20" />
+        {/* Intro + meta */}
+        <div className="mt-10 grid gap-10 border-t border-line/10 pt-8 md:mt-14 md:grid-cols-[minmax(0,1fr)_minmax(0,18rem)] md:gap-16 md:pt-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease, delay: 0.7 }}
+          >
+            <p className="max-w-2xl text-[17px] leading-relaxed text-muted text-pretty md:text-[20px]">
+              {t('hero.intro')}
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href="#projects"
+                onClick={(e) => {
+                  e.preventDefault()
+                  scrollToTarget('#projects', -72)
+                }}
+                className="btn-solid group"
+              >
+                {t('hero.ctaPrimary')}
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault()
+                  scrollToTarget('#contact', -72)
+                }}
+                className="btn-ghost"
+              >
+                {t('hero.ctaSecondary')}
+              </a>
+            </div>
+          </motion.div>
+
+          <motion.dl
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease, delay: 0.85 }}
+            className="grid grid-cols-2 gap-x-6 gap-y-5 md:grid-cols-1"
+          >
+            {meta.map((m) => (
+              <div key={m.label} className="border-l border-line/15 pl-4">
+                <dt className="eyebrow">{m.label}</dt>
+                <dd className="mt-1 text-[14px] font-medium tracking-tight">{m.value}</dd>
+              </div>
+            ))}
+          </motion.dl>
+        </div>
       </div>
 
-      {/* Floating code card */}
+      {/* Marquee + scroll hint */}
       <motion.div
-        animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 sm:w-64 md:w-72 max-w-full"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.1 }}
+        className="container-site relative pb-8"
       >
-        <div className="code-card">
-          <div className="code-card-header flex items-center gap-1.5 px-4 py-2.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
-            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
-            <div className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
-            <span className="ml-2 text-xs text-zinc-500 font-mono">developer.tsx</span>
-          </div>
-          <div className="p-3 font-mono text-xs leading-relaxed">
-            <div className="text-zinc-500">
-              <span className="text-accent-pink">const</span>{' '}
-              <span className="text-accent-cyan">dev</span> = {'{'}
-            </div>
-            <div className="pl-4">
-              <span className="text-accent-violet">name</span>:{' '}
-              <span className="text-accent-green">'Dilshod'</span>,
-            </div>
-            <div className="pl-4">
-              <span className="text-accent-violet">role</span>:{' '}
-              <span className="text-accent-green">'Frontend'</span>,
-            </div>
-            <div className="pl-4">
-              <span className="text-accent-violet">stack</span>: [
-              <span className="text-accent-amber">'React'</span>,
-              <span className="text-accent-amber">'Vue'</span>,
-              <span className="text-accent-amber">'Angular'</span>],
-            </div>
-            <div className="pl-4">
-              <span className="text-accent-violet">years</span>:{' '}
-              <span className="text-accent-cyan">5</span>,
-            </div>
-            <div className="pl-4">
-              <span className="text-accent-violet">remote</span>:{' '}
-              <span className="text-accent-cyan">true</span>,
-            </div>
-            <div className="text-zinc-500">{'}'}</div>
-          </div>
+        <div ref={marqueeRef} className="border-y border-line/10 py-4 will-change-transform">
+          <Marquee items={heroStack} />
+        </div>
+        <div className="mt-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.3em] text-faint">
+          <span className="relative h-8 w-px overflow-hidden bg-line/10">
+            <span className="absolute inset-0 animate-scroll-hint bg-accent" />
+          </span>
+          {t('hero.scrollHint')}
+          <ArrowDown className="h-3 w-3" />
         </div>
       </motion.div>
-
-      <FloatingChip className="top-4 right-8" delay={0}>React</FloatingChip>
-      <FloatingChip className="bottom-8 left-4" delay={1}>Vue 3</FloatingChip>
-      <FloatingChip className="bottom-16 right-2" delay={2}>Tailwind</FloatingChip>
-      <FloatingChip className="top-20 -left-2" delay={3}>Vite</FloatingChip>
-    </div>
-  )
-}
-
-interface FloatingChipProps {
-  children: ReactNode
-  className?: string
-  delay?: number
-}
-
-function FloatingChip({ children, className = '', delay = 0 }: FloatingChipProps) {
-  return (
-    <motion.div
-      animate={{ y: [0, -8, 0] }}
-      transition={{ duration: 4 + delay, repeat: Infinity, delay, ease: 'easeInOut' }}
-      className={`absolute glass px-3 py-1.5 rounded-full text-xs font-mono font-medium text-text-primary shadow-card ${className}`}
-    >
-      {children}
-    </motion.div>
+    </section>
   )
 }

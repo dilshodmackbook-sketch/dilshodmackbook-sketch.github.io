@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
-import { Home } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 
 export default function NotFound() {
   const { t } = useTranslation()
@@ -11,23 +11,20 @@ export default function NotFound() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
-      className="min-h-[80vh] flex items-center justify-center pt-24"
+      className="container-site flex min-h-[80vh] flex-col justify-center pt-24"
     >
-      <div className="text-center px-6">
-        <div className="text-[10rem] md:text-[14rem] font-extrabold leading-none gradient-text font-mono">
-          404
-        </div>
-        <h1 className="text-2xl md:text-3xl font-bold text-text-primary mt-4 mb-2">
-          {t('common.notFound')}
-        </h1>
-        <p className="text-text-secondary mb-8 max-w-md mx-auto">
-          {t('common.notFoundDesc')}
-        </p>
-        <Link to="/" className="btn-primary">
-          <Home className="w-4 h-4" />
-          {t('common.goHome')}
-        </Link>
-      </div>
+      <p className="eyebrow">
+        <span className="text-accent">404</span> — {t('common.notFound')}
+      </p>
+      <h1 className="mt-4 text-[clamp(3rem,12vw,9rem)] font-extrabold uppercase leading-[0.86] tracking-tightest">
+        <span className="block">Not</span>
+        <span className="text-outline block">Found</span>
+      </h1>
+      <p className="mt-8 max-w-md text-[15px] text-muted">{t('common.notFoundDesc')}</p>
+      <Link to="/" className="btn-solid mt-8 w-fit">
+        <ArrowLeft className="h-4 w-4" />
+        {t('common.goHome')}
+      </Link>
     </motion.div>
   )
 }

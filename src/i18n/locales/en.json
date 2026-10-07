@@ -5,168 +5,217 @@
     "experience": "Experience",
     "projects": "Projects",
     "skills": "Skills",
+    "education": "Education",
     "blog": "Blog",
     "contact": "Contact",
-    "resume": "Resume"
+    "resume": "Download CV",
+    "menu": "Menu",
+    "close": "Close"
   },
   "hero": {
-    "greeting": "Hi, I'm Dilshod",
-    "role": "Senior Frontend Engineer",
-    "titles": [
-      "Frontend Engineer",
-      "React Specialist",
-      "Vue.js Developer",
-      "UI/UX Craftsman"
-    ],
-    "description": "I build performant, accessible, and beautifully crafted web applications. Currently freelancing on GitHub for Expensify and engineering the Quantum ELD platform at Longhorn Logistics.",
-    "ctaPrimary": "View my work",
+    "status": "Open to new opportunities",
+    "role": "Fullstack Developer",
+    "location": "Tashkent, Uzbekistan",
+    "firstName": "Dilshod",
+    "lastName": "Bunyodov",
+    "intro": "I build production web applications end to end — from the database and API up to the design system and release. Five years in logistics, enterprise automation and e-commerce; led the full React rewrite of a compliance platform used daily by fleet operators.",
+    "ctaPrimary": "Selected work",
     "ctaSecondary": "Get in touch",
-    "scrollHint": "Scroll to explore",
-    "stats": {
-      "yearsLabel": "Years experience",
-      "projectsLabel": "Projects shipped",
-      "companiesLabel": "Companies",
-      "clientsLabel": "Happy clients"
-    },
-    "availability": "Available for new opportunities"
+    "scrollHint": "Scroll",
+    "meta": {
+      "roleLabel": "Role",
+      "basedLabel": "Based in",
+      "focusLabel": "Focus",
+      "focus": "React · Vue · Node.js · Python · PHP",
+      "experienceLabel": "Experience",
+      "experience": "5 years in production"
+    }
+  },
+  "sections": {
+    "about": "Who I am",
+    "experience": "Where I have worked",
+    "projects": "What I have built",
+    "skills": "What I work with",
+    "education": "Background",
+    "contact": "Let's talk"
   },
   "about": {
-    "eyebrow": "About me",
-    "title": "Crafting digital experiences with code & care",
-    "p1": "I'm a Senior Frontend Engineer with 5 years of real production experience building modern web applications. My journey began with HTML, CSS, and a curiosity that turned into a career.",
-    "p2": "Today I work on the Quantum ELD platform at Longhorn Logistics — rebuilding it with the React ecosystem (React Query, Tailwind, Vite, Radix UI) — and contribute as a freelancer to Expensify's open-source codebase on GitHub.",
-    "p3": "I care deeply about performance, accessibility, and the small details that separate good products from great ones. I believe great UI is invisible — it just feels right.",
-    "currentlyAt": "Currently at",
-    "alsoAt": "Freelancing for",
-    "downloadCV": "Download CV",
-    "locationLabel": "Location",
-    "location": "Tashkent, Uzbekistan",
-    "availabilityLabel": "Status",
-    "availability": "Open to remote opportunities",
-    "languagesLabel": "Languages",
-    "languages": "English · Russian · Uzbek"
+    "title": "About",
+    "p1": "I live in Tashkent and have been building web products for five years. I started with simple sites and PHP/MySQL server logic; these days I can carry a whole product on my own, from the database up to the interface. On the frontend that means React, TypeScript, Vue and Nuxt; on the backend Python, Node.js and PHP, with data in PostgreSQL or MySQL and everything packaged in Docker.",
+    "p2": "For the last two years I worked on Quantum ELD at Longhorn Logistics, a platform US fleet operators use every day. We moved the old frontend to React + TypeScript + Vite, builds dropped from minutes to seconds and a whole class of stale-data bugs went away. Before that, at Zamonaviy Kommunikatsiyalar, I built CRM, warehouse and transport systems: wrote the APIs in Node.js and PHP, designed the databases myself and shipped the interfaces in Vue.",
+    "p3": "I don't like drawing a line between backend and frontend. Wherever the problem is, that's where I work. In my spare time I send pull requests to Expensify/App; getting through a large team's code review is a school of its own.",
+    "stats": {
+      "years": "Years in production",
+      "companies": "Companies",
+      "products": "Products shipped",
+      "stacks": "Stacks owned end to end"
+    },
+    "facts": {
+      "locationLabel": "Location",
+      "location": "Tashkent, Uzbekistan",
+      "statusLabel": "Status",
+      "status": "Contributing to Expensify · open to new roles",
+      "languagesLabel": "Languages",
+      "languages": "Uzbek · English · Russian",
+      "openSourceLabel": "Open source",
+      "openSource": "Expensify/App contributor"
+    },
+    "downloadCV": "Download CV"
   },
   "experience": {
-    "eyebrow": "Experience",
-    "title": "5 years of building things that matter",
-    "subtitle": "A timeline of companies I've helped grow and products I've helped ship.",
-    "present": "Present",
+    "title": "Experience",
+    "subtitle": "Five companies, one open-source codebase, and products that are still in daily use.",
     "current": "Current",
     "jobs": {
-      "longhorn": {
-        "company": "Longhorn Logistics Group",
-        "role": "Frontend Developer — Quantum ELD",
-        "period": "Oct 2024 — Present",
-        "location": "Tashkent, Uzbekistan",
-        "description": "Building a modern ELD platform for the US logistics industry. Rewrote the frontend using React, React Query for server-state, Tailwind for UI, Vite for fast builds, and Radix UI for accessible primitives. Materially improved performance, maintainability, and UX.",
+      "expensify": {
+        "role": "Open-source contributor",
+        "location": "Remote",
+        "summary": "Expensify/App — a large open-source financial product maintained by a distributed team (React Native, TypeScript).",
         "highlights": [
-          "Migrated legacy frontend to a modern React stack",
-          "Reduced bundle size and improved Time to Interactive",
-          "Built reusable accessible component library",
-          "Implemented optimistic updates and caching layer"
+          "Pick up issues in a large codebase and get fixes merged through the team's strict review process.",
+          "Write code that runs on iOS, Android and web at once with React Native, TypeScript and Onyx.",
+          "Earned the GitHub Pull Shark and Pair Extraordinaire achievements."
         ]
       },
-      "expensify": {
-        "company": "Expensify (Open Source)",
-        "role": "Frontend Contributor — Freelance",
-        "period": "2025 — Present",
-        "location": "Remote",
-        "description": "Contributing to Expensify's New Expensify open-source React Native project on GitHub. Picking up issues, shipping fixes, and collaborating with maintainers on a production-scale codebase.",
+      "longhorn": {
+        "role": "Frontend Developer",
+        "location": "Tashkent, Uzbekistan",
+        "summary": "Quantum ELD (formerly Green Light ELD) — an Electronic Logging Device platform for fleet operations and FMCSA compliance.",
         "highlights": [
-          "Shipped PRs against a real-world cross-platform codebase",
-          "Worked across React Native, TypeScript, and Onyx",
-          "Engaged with code review at scale"
+          "Led the migration of the legacy frontend to a modern React + TypeScript + Vite stack, replacing the previous build pipeline and cutting local dev rebuilds from minutes to seconds.",
+          "Introduced React Query for server-state management and caching, replacing scattered manual fetch logic with a single caching layer and eliminating a recurring class of stale-data bugs.",
+          "Rebuilt the UI layer with Tailwind CSS and Radix UI, establishing a shared, accessible design system that made new screens noticeably faster to build.",
+          "Improved runtime performance through route-level code-splitting, memoization and render profiling, reducing the initial bundle and unnecessary re-renders on data-heavy screens.",
+          "Translated ELD/FMCSA regulatory requirements into UI workflows, working directly with backend and compliance stakeholders."
         ]
       },
       "zamonaviy": {
-        "company": "Zamonaviy Kommunikatsiyalar LLC",
-        "role": "Frontend Engineer",
-        "period": "Nov 2021 — Sep 2024",
-        "location": "Tashkent Region, Uzbekistan",
-        "description": "Designed and developed CRM platforms, admin dashboards, and WMS systems. Deep work with Vue 2, Vue 3, Bootstrap-Vue, and Nuxt 3. Delivered scalable solutions for complex business requirements.",
+        "role": "Fullstack Developer",
+        "location": "Tashkent, Uzbekistan",
+        "summary": "Systems-integration and enterprise-automation company.",
         "highlights": [
-          "Architected several CRM and WMS dashboards from scratch",
-          "Led migration from Vue 2 to Vue 3 + Pinia",
-          "Built design system used across multiple internal products"
+          "Delivered a portfolio of enterprise products — CRM platforms, WMS/TMS systems, admin panels and corporate sites — used daily by internal teams and client organizations.",
+          "Built scalable frontends with Vue 2, Vue 3, Nuxt 3 and Bootstrap-Vue, owning feature work from specification through release.",
+          "Developed backend modules and REST APIs with Node.js and PHP on MySQL/PostgreSQL — schema design, queries and business logic behind CRM and WMS/TMS features — and containerized services with Docker.",
+          "Designed reusable component architectures and centralized state with Vuex and Pinia, which became the shared foundation across multiple long-running products.",
+          "Maintained and refactored legacy Vue 2 codebases while incrementally migrating modules to the Vue 3 Composition API."
         ]
       },
-      "prom": {
-        "company": "Prom.uz Marketplace",
-        "role": "Frontend Developer — Freelance",
-        "period": "Mar 2024 — May 2024",
+      "promuz": {
+        "role": "Fullstack Developer · part-time",
         "location": "Remote",
-        "description": "Developed e-commerce experiences with Nuxt 3 and Tailwind CSS Premium. Built an admin dashboard for Med24 streamlining medical operations, and created patient-facing medical sites.",
+        "summary": "Remote contract work carried out in parallel with the role above.",
         "highlights": [
-          "Shipped Nuxt 3 storefront with SSR",
-          "Built Med24 admin dashboard",
-          "Designed responsive patient-facing flows"
+          "Built e-commerce storefronts with Nuxt 3 and Tailwind CSS, delivering fully responsive layouts across mobile, tablet and desktop.",
+          "Developed an admin dashboard for Med24 with its backend API and database, streamlining operations for a medical services provider.",
+          "Shipped medical-sector websites on WordPress/PHP with a focus on clear information architecture and accessible interfaces."
         ]
       },
       "datasite": {
-        "company": "DataSite Technology",
-        "role": "Frontend Developer",
-        "period": "Jan 2021 — May 2021",
+        "role": "Fullstack Developer",
         "location": "Tashkent, Uzbekistan",
-        "description": "First professional role. Built websites and admin dashboards with HTML, CSS, React, WordPress, Bootstrap, and Sass. Focused on responsive design and intuitive UX.",
+        "summary": "First professional role: client-side web applications and PHP/MySQL server-side logic.",
         "highlights": [
-          "Delivered multiple client websites end-to-end",
-          "Built reusable WordPress themes",
-          "Learned the discipline of shipping under deadlines"
+          "Developed and supported client-side web applications and PHP/MySQL server-side logic against technical specifications.",
+          "Contributed to server maintenance and carried out ongoing refactoring of existing code."
         ]
+      }
+    }
+  },
+  "projects": {
+    "title": "Selected work",
+    "subtitle": "Production platforms, enterprise systems and open-source work. Most of these run behind company logins, so the cards describe the work rather than link to it.",
+    "visit": "Visit",
+    "code": "Source",
+    "status": {
+      "production": "In production",
+      "open-source": "Open source",
+      "delivered": "Delivered",
+      "internal": "Internal",
+      "live": "Live"
+    },
+    "items": {
+      "quantum": {
+        "title": "Quantum ELD",
+        "tagline": "Fleet compliance platform for US trucking",
+        "description": "Led the full rewrite of the legacy frontend to React, TypeScript and Vite. React Query as the single caching layer, a Tailwind + Radix design system, route-level code-splitting and FMCSA workflows translated into UI."
+      },
+      "expensify": {
+        "title": "Expensify / App",
+        "tagline": "Open-source financial collaboration product",
+        "description": "Contributing to a large-scale React Native codebase maintained by a distributed team, inside an established review process. Earned the GitHub Pull Shark and Pair Extraordinaire achievements."
+      },
+      "crm": {
+        "title": "Enterprise CRM platforms",
+        "tagline": "Client and sales management for internal teams",
+        "description": "Several CRM products on Vue 3 and Pinia with Node.js/PHP REST APIs on PostgreSQL and MySQL — schema design, queries and the business logic behind daily sales operations."
+      },
+      "wms": {
+        "title": "WMS / TMS systems",
+        "tagline": "Warehouse and transport management",
+        "description": "Inventory, dispatch and role-based admin flows for logistics clients. Reusable component architecture, centralized Vuex state and Docker-packaged services."
+      },
+      "med24": {
+        "title": "Med24 admin dashboard",
+        "tagline": "Operations console for a medical provider",
+        "description": "Admin dashboard with its own backend API and database, plus Nuxt 3 storefronts and WordPress/PHP sites for the medical sector — responsive on mobile, tablet and desktop."
+      },
+      "portfolio": {
+        "title": "This portfolio",
+        "tagline": "Designed, built and deployed via GitHub Pages",
+        "description": "React, TypeScript and Vite with Tailwind and Framer Motion. Three languages, light and dark themes, smooth scrolling and scroll-driven reveals."
       }
     }
   },
   "skills": {
-    "eyebrow": "Tech stack",
-    "title": "Tools I use to ship great products",
-    "subtitle": "A curated set of technologies I rely on every day in production.",
-    "categories": {
-      "frameworks": "Frameworks & Libraries",
+    "title": "Skills",
+    "subtitle": "Grouped the way I actually reach for them — the frontend first, then the backend and tooling behind it.",
+    "groups": {
       "languages": "Languages",
-      "styling": "Styling & UI",
-      "state": "State & Data",
-      "tooling": "Tooling & Build",
-      "platforms": "Platforms & Infra"
+      "frameworks": "Frameworks",
+      "state": "State & data",
+      "backend": "Backend, DevOps & AI",
+      "ui": "UI & styling",
+      "architecture": "Architecture & tooling",
+      "domains": "Domains"
     }
   },
-  "projects": {
-    "eyebrow": "Selected work",
-    "title": "Projects I'm proud of",
-    "subtitle": "Production work, side projects, and open-source contributions.",
-    "viewProject": "View project",
-    "viewCode": "View code",
-    "items": {
-      "quantum": {
-        "title": "Quantum ELD Platform",
-        "description": "Modern ELD (Electronic Logging Device) platform for the US trucking industry. Rebuilt the frontend with React, React Query, Tailwind, and Radix UI. Significantly improved performance and maintainability.",
-        "role": "Frontend Engineer"
-      },
-      "expensify": {
-        "title": "New Expensify (Open Source)",
-        "description": "Contributing to the open-source New Expensify React Native app on GitHub. Picking up issues, shipping fixes across iOS, Android, and Web.",
-        "role": "Open-source Contributor"
-      },
-      "med24": {
-        "title": "Med24 Admin Dashboard",
-        "description": "Admin dashboard for a medical platform built with Nuxt 3 and Tailwind Premium. Streamlined clinic operations, appointments, and patient data.",
-        "role": "Frontend Developer"
-      },
-      "crm": {
-        "title": "Enterprise CRM Suite",
-        "description": "Several CRM platforms architected from scratch with Vue 3, Pinia, and Bootstrap-Vue. Used internally across multiple business units.",
-        "role": "Lead Frontend"
-      },
-      "wms": {
-        "title": "Warehouse Management System",
-        "description": "Internal WMS with complex inventory flows, role-based access, and real-time updates. Vue 3 + Pinia + custom design system.",
-        "role": "Frontend Engineer"
-      },
-      "portfolio": {
-        "title": "This Portfolio",
-        "description": "The site you're looking at. Built with React 18, Vite, Tailwind, Framer Motion, and i18next. Trilingual, fully responsive, dark-modern aesthetic.",
-        "role": "Designer & Developer"
-      }
-    }
+  "education": {
+    "title": "Education",
+    "college": "Tashkent State Household College",
+    "degree": "Vocational Secondary Education",
+    "languagesTitle": "Languages",
+    "languages": {
+      "uzbek": "Uzbek",
+      "english": "English",
+      "russian": "Russian"
+    },
+    "native": "Native",
+    "cefr": "CEFR scale"
+  },
+  "contact": {
+    "title": "Let's build something",
+    "subtitle": "Have a role, a product or a problem worth solving? Write to me — I answer within a day.",
+    "emailLabel": "Email me",
+    "elsewhere": "Elsewhere",
+    "closing": "Based in Tashkent. Available for remote roles worldwide and on-site in Uzbekistan.",
+    "copy": "Copy",
+    "copied": "Copied"
+  },
+  "footer": {
+    "tagline": "Fullstack Developer · Tashkent",
+    "builtWith": "Built with React, Vite, Tailwind & Framer Motion.",
+    "rights": "All rights reserved.",
+    "scrollTop": "Back to top",
+    "navigation": "Navigation",
+    "social": "Social"
+  },
+  "common": {
+    "loading": "Loading",
+    "notFound": "Page not found",
+    "notFoundDesc": "The page you are looking for does not exist or has been moved.",
+    "goHome": "Go home",
+    "theme": "Toggle theme"
   },
   "blog": {
     "eyebrow": "Writing",
@@ -201,50 +250,13 @@
       }
     }
   },
-  "contact": {
-    "eyebrow": "Get in touch",
-    "title": "Let's build something great",
-    "subtitle": "Have a project in mind, a role to discuss, or just want to say hi? My inbox is open.",
-    "form": {
-      "name": "Your name",
-      "namePlaceholder": "John Doe",
-      "email": "Email",
-      "emailPlaceholder": "john@example.com",
-      "subject": "Subject",
-      "subjectPlaceholder": "What's this about?",
-      "message": "Message",
-      "messagePlaceholder": "Tell me about your project, role, or idea...",
-      "submit": "Send message",
-      "submitting": "Sending...",
-      "success": "Message sent! I'll get back to you within 24 hours.",
-      "error": "Something went wrong. Please email me directly.",
-      "validation": {
-        "nameRequired": "Please enter your name",
-        "emailRequired": "Please enter your email",
-        "emailInvalid": "Please enter a valid email",
-        "messageRequired": "Please write a message",
-        "messageShort": "Message should be at least 10 characters"
-      }
-    },
-    "directContact": "Or reach me directly",
-    "responseTime": "I usually respond within 24 hours",
-    "based": "Based in Tashkent, Uzbekistan · Available remotely worldwide"
-  },
-  "footer": {
-    "tagline": "Crafted with care in Tashkent.",
-    "builtWith": "Built with React, Vite, Tailwind & Framer Motion.",
-    "rights": "All rights reserved.",
-    "sections": {
-      "navigation": "Navigation",
-      "social": "Social",
-      "legal": "Legal"
-    },
-    "scrollTop": "Back to top"
-  },
-  "common": {
-    "loading": "Loading...",
-    "notFound": "Page not found",
-    "notFoundDesc": "The page you're looking for doesn't exist or has been moved.",
-    "goHome": "Go home"
+  "manifesto": {
+    "line": "I design the database, write the API, build the interface — and ship all three as one product.",
+    "accents": [
+      "database",
+      "API",
+      "interface",
+      "one product"
+    ]
   }
 }

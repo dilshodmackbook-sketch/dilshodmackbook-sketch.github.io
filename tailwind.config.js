@@ -9,49 +9,50 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: {
-          primary: rgbVar('--c-bg-primary'),
-          secondary: rgbVar('--c-bg-secondary'),
-          tertiary: rgbVar('--c-bg-tertiary'),
-          card: rgbVar('--c-bg-card'),
-          elevated: rgbVar('--c-bg-elevated'),
-        },
-        border: {
-          DEFAULT: rgbVar('--c-border'),
-          subtle: rgbVar('--c-border-subtle'),
-          strong: rgbVar('--c-border-strong'),
-        },
-        accent: {
-          violet: rgbVar('--c-accent-violet'),
-          cyan: rgbVar('--c-accent-cyan'),
-          pink: rgbVar('--c-accent-pink'),
-          green: rgbVar('--c-accent-green'),
-          amber: rgbVar('--c-accent-amber'),
-        },
-        text: {
-          primary: rgbVar('--c-text-primary'),
-          secondary: rgbVar('--c-text-secondary'),
-          muted: rgbVar('--c-text-muted'),
-          dim: rgbVar('--c-text-dim'),
-        },
+        ink: rgbVar('--c-ink'),
+        paper: rgbVar('--c-paper'),
+        line: rgbVar('--c-line'),
+        accent: rgbVar('--c-accent'),
+        glow: rgbVar('--c-glow'),
+        fg: rgbVar('--c-fg'),
+        muted: rgbVar('--c-muted'),
+        faint: rgbVar('--c-faint'),
+        surface: rgbVar('--c-surface'),
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'Menlo', 'monospace'],
-      },
-      fontSize: {
-        'display-1': ['clamp(3rem, 8vw, 6rem)', { lineHeight: '1', letterSpacing: '-0.04em', fontWeight: '800' }],
+        sans: ['Manrope', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'Menlo', 'monospace'],
       },
       letterSpacing: {
-        tightest: '-0.04em',
-        tighter: '-0.025em',
+        tightest: '-0.05em',
+        tighter: '-0.03em',
+      },
+      maxWidth: {
+        site: '76rem',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        'scroll-hint': {
+          '0%': { transform: 'scaleY(0)', transformOrigin: 'top' },
+          '50%': { transform: 'scaleY(1)', transformOrigin: 'top' },
+          '50.01%': { transform: 'scaleY(1)', transformOrigin: 'bottom' },
+          '100%': { transform: 'scaleY(0)', transformOrigin: 'bottom' },
+        },
+        pulse2: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.35' },
+        },
       },
       animation: {
-        float: 'float 6s ease-in-out infinite',
+        marquee: 'marquee 40s linear infinite',
+        'scroll-hint': 'scroll-hint 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite',
+        pulse2: 'pulse2 2s ease-in-out infinite',
       },
-      boxShadow: {
-        card: '0 4px 24px rgba(0, 0, 0, 0.4)',
-        'glow-violet': '0 0 40px rgba(124, 58, 237, 0.35)',
+      transitionTimingFunction: {
+        'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
       },
     },
   },

@@ -1,10 +1,10 @@
+import { useState } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Clock, Calendar, Tag, Share2 } from 'lucide-react'
-import { useState } from 'react'
+import { ArrowLeft, Share2, Check } from 'lucide-react'
+import Reveal from '../components/utils/Reveal'
 import { blogPosts } from '../data/blog'
-import type { BlogAccent } from '../types'
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>()
@@ -18,25 +18,19 @@ export default function BlogPost() {
     const url = window.location.href
     if (navigator.share) {
       try {
-        await navigator.share({
-          title: t(`blog.posts.${post.key}.title`),
-          url,
-        })
+        await navigator.share({ title: t(`blog.posts.${post.key}.title`), url })
       } catch {
-        // user dismissed
+        // dismissed
       }
-    } else {
-      navigator.clipboard.writeText(url)
+      return
+    }
+    try {
+      await navigator.clipboard.writeText(url)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // clipboard unavailable
     }
-  }
-
-  const accentMap: Record<BlogAccent, string> = {
-    violet: 'from-violet-500 to-fuchsia-500',
-    cyan: 'from-cyan-500 to-blue-500',
-    pink: 'from-pink-500 to-rose-500',
-    green: 'from-emerald-500 to-teal-500',
   }
 
   return (
@@ -45,100 +39,68 @@ export default function BlogPost() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
-      className="section pt-32"
+      className="container-site pb-24 pt-32 md:pt-40"
     >
-      <div className="container-custom max-w-3xl">
-        {/* Back link */}
+      <div className="mx-auto max-w-3xl">
         <Link
           to="/blog"
-          className="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-text-primary transition-colors mb-8 group"
+          className="group inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-faint transition-colors hover:text-fg"
         >
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
+          <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
           {t('blog.backToBlog')}
         </Link>
 
-        {/* Accent bar */}
-        <div className={`h-1 w-24 rounded-full bg-gradient-to-r ${accentMap[post.accent]} mb-6`} />
+        <Reveal className="mt-10">
+          <p className="font-mono text-[11px] tracking-[0.15em] text-faint">
+            {t(`blog.posts.${post.key}.date`).toUpperCase()} · {t('blog.readingTime', { minutes: post.readingTime }).toUpperCase()}
+          </p>
+          <h1 className="mt-4 text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.02] tracking-tighter text-balance">
+            {t(`blog.posts.${post.key}.title`)}
+          </h1>
+          <p className="mt-6 text-[17px] leading-relaxed text-muted text-pretty">{t(`blog.posts.${post.key}.excerpt`)}</p>
+        </Reveal>
 
-        {/* Meta */}
-        <div className="flex flex-wrap items-center gap-3 text-xs text-text-muted font-mono mb-4">
-          <span className="flex items-center gap-1">
-            <Calendar className="w-3 h-3" />
-            {t(`blog.posts.${post.key}.date`)}
-          </span>
-          <span className="w-1 h-1 rounded-full bg-text-muted" />
-          <span className="flex items-center gap-1">
-            <Clock className="w-3 h-3" />
-            {t('blog.readingTime', { minutes: post.readingTime })}
-          </span>
-        </div>
-
-        {/* Title */}
-        <h1 className="text-4xl md:text-5xl font-bold text-balance mb-4">
-          <span className="gradient-text">{t(`blog.posts.${post.key}.title`)}</span>
-        </h1>
-
-        {/* Excerpt */}
-        <p className="text-lg text-text-secondary leading-relaxed mb-6 text-pretty">
-          {t(`blog.posts.${post.key}.excerpt`)}
-        </p>
-
-        {/* Tags + share */}
-        <div className="flex items-center justify-between gap-4 mb-10 pb-8 border-b border-border">
+        <div className="mt-8 flex items-center justify-between gap-4 border-y border-line/10 py-4">
           <div className="flex flex-wrap gap-1.5">
             {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="inline-flex items-center gap-1 chip text-[10px]"
-              >
-                <Tag className="w-2.5 h-2.5" />
+              <span key={tag} className="chip px-2.5 py-0.5 text-[11px]">
                 {tag}
               </span>
             ))}
           </div>
           <button
+            type="button"
             onClick={onShare}
-            className="flex items-center gap-1.5 text-xs text-text-secondary hover:text-text-primary transition-colors"
+            className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-faint transition-colors hover:text-fg"
           >
-            <Share2 className="w-3.5 h-3.5" />
-            {copied ? 'Copied!' : 'Share'}
+            {copied ? <Check className="h-3.5 w-3.5" /> : <Share2 className="h-3.5 w-3.5" />}
+            {copied ? 'Copied' : 'Share'}
           </button>
         </div>
 
-        {/* Sections */}
-        <div className="prose-content space-y-10">
+        <div className="mt-12 space-y-12">
           {post.sections.map((section, idx) => (
-            <motion.section
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.4, delay: idx * 0.05 }}
-            >
-              <h2 className="text-2xl font-bold text-text-primary mb-4 text-balance">
-                <span className="text-accent-violet font-mono mr-2">#</span>
+            <Reveal key={idx} as="section">
+              <h2 className="flex items-baseline gap-3 text-2xl font-bold tracking-tighter">
+                <span className="font-mono text-[11px] text-accent">0{idx + 1}</span>
                 {section.heading}
               </h2>
-              <div className="space-y-4 text-text-secondary leading-relaxed text-pretty">
+              <div className="mt-4 space-y-4 text-[16px] leading-relaxed text-muted text-pretty">
                 {section.body.map((p, i) => (
                   <p key={i}>{p}</p>
                 ))}
               </div>
-            </motion.section>
+            </Reveal>
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-16 pt-10 border-t border-border text-center">
-          <p className="text-text-secondary mb-4">Enjoyed this?</p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Link to="/blog" className="btn-secondary">
-              {t('blog.backToBlog')}
-            </Link>
-            <Link to="/#contact" className="btn-primary">
-              {t('nav.contact')}
-            </Link>
-          </div>
+        <div className="mt-16 flex flex-wrap gap-3 border-t border-line/10 pt-10">
+          <Link to="/blog" className="btn-ghost">
+            {t('blog.backToBlog')}
+          </Link>
+          <Link to="/#contact" className="btn-solid">
+            {t('nav.contact')}
+          </Link>
         </div>
       </div>
     </motion.article>

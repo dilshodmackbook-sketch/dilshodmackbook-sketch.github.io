@@ -1,43 +1,35 @@
 export type Theme = 'light' | 'dark'
 
-export type ProjectStatus =
-  | 'production'
-  | 'open-source'
-  | 'delivered'
-  | 'internal'
-  | 'live'
+export type ProjectStatus = 'production' | 'open-source' | 'delivered' | 'internal' | 'live'
 
 export interface ExperienceItem {
   key: string
   company: string
-  short: string
-  color: string
+  period: string
   isCurrent: boolean
   techs: string[]
   url?: string
 }
 
-export interface SkillItem {
-  name: string
-  level: number
-  years: number
-}
-
 export interface SkillGroup {
   key: string
-  icon: string
-  items: SkillItem[]
+  items: string[]
 }
 
 export interface ProjectItem {
   key: string
-  featured: boolean
+  index: string
+  year: string
   techs: string[]
-  gradient: string
-  icon: string
   link: string | null
   repo: string | null
   status: ProjectStatus
+}
+
+export interface LanguageItem {
+  key: string
+  level: string
+  percent: number
 }
 
 export interface BlogSection {
@@ -56,7 +48,7 @@ export interface BlogPost {
   sections: BlogSection[]
 }
 
-export type SocialPlatform = 'github' | 'linkedin' | 'email'
+export type SocialPlatform = 'github' | 'linkedin' | 'telegram' | 'email' | 'phone'
 
 export interface SocialLink {
   platform: SocialPlatform

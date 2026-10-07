@@ -1,94 +1,52 @@
-import { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Globe, Check, ChevronDown } from 'lucide-react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 
-interface Lang {
-  code: string
-  label: string
-  short: string
-  flag: string
-}
+const LANGS = ['en', 'uz', 'ru'] as const
+type Lang = (typeof LANGS)[number]
 
-const LANGS: Lang[] = [
-  { code: 'en', label: 'English', short: 'EN', flag: '🇺🇸' },
-  { code: 'ru', label: 'Русский', short: 'RU', flag: '🇷🇺' },
-  { code: 'uz', label: "O'zbekcha", short: 'UZ', flag: '🇺🇿' },
-]
-
-interface LanguageSwitcherProps {
-  compact?: boolean
-}
-
-export default function LanguageSwitcher({ compact = false }: LanguageSwitcherProps) {
+export default function LanguageSwitcher({ className = '' }: { className?: string }) {
   const { i18n } = useTranslation()
-  const [open, setOpen] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
+  const current = (i18n.resolvedLanguage || 'en').slice(0, 2) as Lang
 
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+  const change = (lng: Lang) => {
+    i18n.changeLanguage(lng)
+    document.documentElement.lang = lng
+    try {
+      localStorage.setItem('lang', lng)
+    } catch {
+      // storage unavailable
     }
-    document.addEventListener('mousedown', handler)
-    return () => document.removeEventListener('mousedown', handler)
-  }, [])
-
-  const current = LANGS.find((l) => l.code === i18n.language) || LANGS[0]
-
-  const change = (code: string) => {
-    i18n.changeLanguage(code)
-    document.documentElement.lang = code
-    setOpen(false)
   }
 
   return (
-    <div className="relative" ref={ref}>
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className={`flex items-center gap-1.5 rounded-full border border-border bg-bg-card/60 backdrop-blur-md
-                    transition-all hover:border-accent-violet hover:bg-bg-elevated
-                    ${compact ? 'px-2.5 py-1.5 text-xs' : 'px-3 py-2 text-sm'}`}
-        aria-label="Change language"
-        aria-expanded={open}
-      >
-        <Globe className={compact ? 'w-3.5 h-3.5' : 'w-4 h-4'} />
-        <span className="font-mono font-medium">{current.short}</span>
-        <ChevronDown className={`w-3 h-3 transition-transform ${open ? 'rotate-180' : ''}`} />
-      </button>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -8, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.95 }}
-            transition={{ duration: 0.15 }}
-            className="absolute right-0 mt-2 w-44 rounded-2xl glass-strong shadow-card p-1.5 z-50"
+    <div
+      role="group"
+      aria-label="Language"
+      className={`flex items-center gap-0.5 rounded-full border border-line/[0.12] p-0.5 ${className}`}
+    >
+      {LANGS.map((lng) => {
+        const active = current === lng
+        return (
+          <button
+            key={lng}
+            type="button"
+            onClick={() => change(lng)}
+            aria-pressed={active}
+            className={`relative rounded-full px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.15em] transition-colors duration-300 ${
+              active ? 'text-ink' : 'text-faint hover:text-fg'
+            }`}
           >
-            {LANGS.map((lang) => {
-              const active = lang.code === current.code
-              return (
-                <button
-                  key={lang.code}
-                  onClick={() => change(lang.code)}
-                  className={`w-full flex items-center justify-between gap-2 px-3 py-2 rounded-xl text-sm
-                              transition-colors ${
-                                active
-                                  ? 'bg-accent-violet/15 text-text-primary'
-                                  : 'text-text-secondary hover:bg-bg-card hover:text-text-primary'
-                              }`}
-                >
-                  <span className="flex items-center gap-2">
-                    <span className="text-base leading-none">{lang.flag}</span>
-                    <span>{lang.label}</span>
-                  </span>
-                  {active && <Check className="w-4 h-4 text-accent-violet" />}
-                </button>
-              )
-            })}
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {active && (
+              <motion.span
+                layoutId="lang-pill"
+                className="absolute inset-0 rounded-full bg-fg"
+                transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+              />
+            )}
+            <span className="relative">{lng}</span>
+          </button>
+        )
+      })}
     </div>
   )
 }

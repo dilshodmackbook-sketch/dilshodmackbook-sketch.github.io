@@ -5,168 +5,217 @@
     "experience": "Tajriba",
     "projects": "Loyihalar",
     "skills": "Ko'nikmalar",
+    "education": "Ta'lim",
     "blog": "Blog",
     "contact": "Aloqa",
-    "resume": "Rezyume"
+    "resume": "CV yuklab olish",
+    "menu": "Menyu",
+    "close": "Yopish"
   },
   "hero": {
-    "greeting": "Salom, men Dilshod",
-    "role": "Senior Frontend muhandis",
-    "titles": [
-      "Frontend muhandis",
-      "React mutaxassisi",
-      "Vue.js dasturchi",
-      "UI/UX ustasi"
-    ],
-    "description": "Tezkor, qulay va puxta tayyorlangan veb-ilovalar yarataman. Hozirda GitHub'da Expensify uchun freelance qilaman va Longhorn Logistics'da Quantum ELD platformasini quryapman.",
-    "ctaPrimary": "Ishlarimni ko'rish",
+    "status": "Yangi imkoniyatlarga ochiqman",
+    "role": "Fullstack dasturchi",
+    "location": "Toshkent, O'zbekiston",
+    "firstName": "Dilshod",
+    "lastName": "Bunyodov",
+    "intro": "Men production veb-ilovalarni boshidan oxirigacha quraman — ma'lumotlar bazasi va API'dan dizayn-tizim va relizgacha. Logistika, korporativ avtomatlashtirish va e-commerce sohalarida besh yil; avtoparklar har kuni ishlatadigan compliance platformasini React'ga to'liq o'tkazishga rahbarlik qildim.",
+    "ctaPrimary": "Tanlangan ishlar",
     "ctaSecondary": "Bog'lanish",
-    "scrollHint": "Pastga aylantiring",
-    "stats": {
-      "yearsLabel": "Yillik tajriba",
-      "projectsLabel": "Yetkazilgan loyihalar",
-      "companiesLabel": "Kompaniyalar",
-      "clientsLabel": "Mamnun mijozlar"
-    },
-    "availability": "Yangi imkoniyatlarga ochiqman"
+    "scrollHint": "Pastga",
+    "meta": {
+      "roleLabel": "Lavozim",
+      "basedLabel": "Shahar",
+      "focusLabel": "Yo'nalish",
+      "focus": "React · Vue · Node.js · Python · PHP",
+      "experienceLabel": "Tajriba",
+      "experience": "Production'da 5 yil"
+    }
+  },
+  "sections": {
+    "about": "Men kimman",
+    "experience": "Qayerda ishlaganman",
+    "projects": "Nimalar qurganman",
+    "skills": "Nimalar bilan ishlayman",
+    "education": "Ta'lim va tillar",
+    "contact": "Gaplashamiz"
   },
   "about": {
-    "eyebrow": "Men haqimda",
-    "title": "Kod va e'tibor bilan raqamli tajribalar yarataman",
-    "p1": "Men Senior Frontend muhandisman, 5 yillik real production tajribaga egaman. Yo'lim HTML va CSS dan boshlanib, qiziquvchanlik kasbga aylandi.",
-    "p2": "Bugun men Longhorn Logistics'dagi Quantum ELD platformasi ustida ishlayman — uni React ekotizimida qayta quryapman (React Query, Tailwind, Vite, Radix UI) — va freelancer sifatida Expensify'ning GitHub'dagi open-source kodbazasiga hissa qo'shaman.",
-    "p3": "Men ishlash unumdorligi, qulaylik va yaxshi mahsulotni a'lo darajadagidan ajratib turuvchi mayda detallarga jiddiy qarayman. Yaxshi UI ko'rinmaydi — u shunchaki to'g'ri his etiladi.",
-    "currentlyAt": "Hozir",
-    "alsoAt": "Freelance",
-    "downloadCV": "CV yuklab olish",
-    "locationLabel": "Manzil",
-    "location": "Toshkent, O'zbekiston",
-    "availabilityLabel": "Holat",
-    "availability": "Masofaviy ishga ochiqman",
-    "languagesLabel": "Tillar",
-    "languages": "Ingliz · Rus · O'zbek"
+    "title": "Men haqimda",
+    "p1": "Men Toshkentda yashayman, besh yildan beri veb-mahsulotlar quraman. Oddiy saytlar va PHP/MySQL'dagi server mantiqidan boshlaganman, hozir esa butun mahsulotni — bazadan tortib interfeysgacha — o'zim ko'tara olaman. Frontend'da React, TypeScript, Vue va Nuxt; backend'da Python, Node.js va PHP bilan ishlayman, ma'lumotlar PostgreSQL yoki MySQL'da turadi, hammasi Docker'da yig'iladi.",
+    "p2": "Oxirgi ikki yilda Longhorn Logistics'da Quantum ELD ustida ishladim — bu AQSh avtoparklari har kuni ishlatadigan platforma. Eski frontend'ni React + TypeScript + Vite'ga ko'chirdik, build daqiqalardan soniyalarga tushdi, eskirgan ma'lumot bilan bog'liq xatolar yo'qoldi. Undan oldin Zamonaviy Kommunikatsiyalar'da CRM, ombor va transport tizimlarini qurganman: API'sini Node.js va PHP'da yozdim, bazasini o'zim loyihaladim, interfeysini Vue'da chiqardim.",
+    "p3": "Backend bilan frontend o'rtasida chegara chizishni yoqtirmayman — muammo qayerda bo'lsa, o'sha yerda ishlayman. Bo'sh vaqtimda Expensify/App open-source loyihasiga pull request yuboraman; katta jamoaning code review'idan o'tishning o'zi alohida maktab.",
+    "stats": {
+      "years": "Production'da yillar",
+      "companies": "Kompaniyalar",
+      "products": "Yetkazilgan mahsulotlar",
+      "stacks": "Boshidan oxirigacha stacklar"
+    },
+    "facts": {
+      "locationLabel": "Joylashuv",
+      "location": "Toshkent, O'zbekiston",
+      "statusLabel": "Holat",
+      "status": "Expensify'da ishlayman · yangi takliflarga ochiqman",
+      "languagesLabel": "Tillar",
+      "languages": "O'zbek · Ingliz · Rus",
+      "openSourceLabel": "Open source",
+      "openSource": "Expensify/App hissadori"
+    },
+    "downloadCV": "CV yuklab olish"
   },
   "experience": {
-    "eyebrow": "Ish tajribasi",
-    "title": "5 yil davomida muhim narsalar quraman",
-    "subtitle": "Men o'sishiga yordam bergan kompaniyalar va yetkazib bergan mahsulotlar taymlayni.",
-    "present": "Hozirgi vaqt",
-    "current": "Joriy",
+    "title": "Tajriba",
+    "subtitle": "Beshta kompaniya, bitta open-source kodbaza va hali ham har kuni ishlatilayotgan mahsulotlar.",
+    "current": "Hozir",
     "jobs": {
-      "longhorn": {
-        "company": "Longhorn Logistics Group",
-        "role": "Frontend Developer — Quantum ELD",
-        "period": "Okt 2024 — Hozirgi vaqt",
-        "location": "Toshkent, O'zbekiston",
-        "description": "AQSh logistika sanoati uchun zamonaviy ELD platformasini yaratyapman. Frontend'ni React, React Query, Tailwind, Vite va Radix UI bilan qayta yozdim. Ishlash, qo'llab-quvvatlash va UX'ni sezilarli darajada yaxshiladim.",
+      "expensify": {
+        "role": "Open-source hissadori",
+        "location": "Masofaviy",
+        "summary": "Expensify/App — tarqoq jamoa yuritadigan yirik open-source moliyaviy mahsulot (React Native, TypeScript).",
         "highlights": [
-          "Legacy frontend'ni zamonaviy React stack'iga ko'chirish",
-          "Bundle hajmini kamaytirdim va Time to Interactive'ni yaxshiladim",
-          "Qayta ishlatiluvchi qulay komponentlar kutubxonasini qurdim",
-          "Optimistik yangilanishlar va caching qatlamini joriy qildim"
+          "Katta kodbazada issue'larni olib, tuzatishlarni jamoaning qat'iy review jarayonidan o'tkazib merge qilaman.",
+          "React Native, TypeScript va Onyx bilan iOS, Android va web uchun bir vaqtda ishlaydigan kod yozaman.",
+          "GitHub'ning Pull Shark va Pair Extraordinaire yutuqlarini oldim."
         ]
       },
-      "expensify": {
-        "company": "Expensify (Open Source)",
-        "role": "Frontend Contributor — Freelance",
-        "period": "2025 — Hozirgi vaqt",
-        "location": "Masofaviy",
-        "description": "GitHub'da Expensify'ning open-source React Native loyihasiga hissa qo'shaman. Vazifalarni olaman, fix yuboraman va maintainerlar bilan ishlayman.",
+      "longhorn": {
+        "role": "Frontend dasturchi",
+        "location": "Toshkent, O'zbekiston",
+        "summary": "Quantum ELD (avvalgi Green Light ELD) — avtoparklar operatsiyalari va FMCSA talablariga muvofiqlik uchun elektron bort jurnali platformasi.",
         "highlights": [
-          "Real cross-platform kodbazaga PR yubordim",
-          "React Native, TypeScript va Onyx bilan ishladim",
-          "Katta miqyosli code review'da qatnashdim"
+          "Eski frontend'ni zamonaviy React + TypeScript + Vite stack'iga ko'chirishga rahbarlik qildim — avvalgi build jarayoni almashtirildi, lokal qayta yig'ish daqiqalardan soniyalarga tushdi.",
+          "Server state va keshlash uchun React Query'ni joriy qildim: tarqoq qo'lda yozilgan fetch mantiqi yagona kesh qatlamiga almashdi va eskirgan ma'lumotlar bilan bog'liq xatolar sinfi yo'qoldi.",
+          "UI qatlamini Tailwind CSS va Radix UI'da qayta qurdim — umumiy, accessible dizayn-tizim yangi ekranlarni sezilarli tezroq yig'ish imkonini berdi.",
+          "Route darajasida code-splitting, memoizatsiya va render profiling orqali performance'ni oshirdim — boshlang'ich bundle va og'ir ekranlardagi ortiqcha re-render'lar kamaydi.",
+          "ELD/FMCSA tartibga solish talablarini UI jarayonlariga aylantirdim, backend va compliance mutaxassislari bilan bevosita ishladim."
         ]
       },
       "zamonaviy": {
-        "company": "Zamonaviy Kommunikatsiyalar MChJ",
-        "role": "Frontend muhandis",
-        "period": "Noy 2021 — Sen 2024",
-        "location": "Toshkent viloyati, O'zbekiston",
-        "description": "CRM platformalari, admin paneller va WMS tizimlarini loyihaladim va ishlab chiqdim. Vue 2, Vue 3, Bootstrap-Vue va Nuxt 3 bilan chuqur ishladim.",
+        "role": "Fullstack dasturchi",
+        "location": "Toshkent, O'zbekiston",
+        "summary": "Tizim integratsiyasi va korporativ avtomatlashtirish kompaniyasi.",
         "highlights": [
-          "Bir nechta CRM va WMS dashboardlarni noldan loyihaladim",
-          "Vue 2 dan Vue 3 + Pinia'ga ko'chishni boshqardim",
-          "Bir nechta ichki mahsulotlarda ishlatilgan dizayn tizimi qurdim"
+          "Korporativ mahsulotlar portfelini yetkazib berdim — CRM platformalar, WMS/TMS tizimlar, admin panellar va korporativ saytlar — ularni ichki jamoalar va mijoz tashkilotlar har kuni ishlatadi.",
+          "Vue 2, Vue 3, Nuxt 3 va Bootstrap-Vue'da kengaytiriladigan frontend'lar qurdim, funksiyalarga texnik topshiriqdan relizgacha javob berdim.",
+          "Node.js va PHP'da MySQL/PostgreSQL ustida backend modullari va REST API'lar ishlab chiqdim — sxema dizayni, so'rovlar va CRM, WMS/TMS funksiyalari ortidagi biznes mantiq — hamda servislarni Docker'ga joyladim.",
+          "Qayta ishlatiladigan komponent arxitekturasi va Vuex/Pinia'da markazlashgan state'ni loyihaladim — bu bir nechta uzoq muddatli mahsulotlar uchun umumiy poydevor bo'ldi.",
+          "Eski Vue 2 kodbazalarini saqlab va refaktor qilib, modullarni bosqichma-bosqich Vue 3 Composition API'ga o'tkazdim."
         ]
       },
-      "prom": {
-        "company": "Prom.uz Bozor",
-        "role": "Frontend Developer — Freelance",
-        "period": "Mar 2024 — May 2024",
+      "promuz": {
+        "role": "Fullstack dasturchi · part-time",
         "location": "Masofaviy",
-        "description": "Nuxt 3 va Tailwind CSS Premium bilan e-commerce loyihalar yaratdim. Med24 uchun admin dashboard va bemorlarga mo'ljallangan tibbiy saytlar qurdim.",
+        "summary": "Asosiy ish bilan parallel bajarilgan masofaviy shartnoma ishi.",
         "highlights": [
-          "SSR bilan Nuxt 3 storefront yetkazib berdim",
-          "Med24 admin dashboard qurdim",
-          "Bemorlar uchun moslashuvchan oqimlarni loyihaladim"
+          "Nuxt 3 va Tailwind CSS'da e-commerce vitrinalarini qurdim — mobil, planshet va desktop uchun to'liq moslashuvchan.",
+          "Med24 uchun backend API va ma'lumotlar bazasi bilan admin panel ishlab chiqdim — tibbiy xizmat provayderining operatsiyalarini soddalashtirdi.",
+          "WordPress/PHP'da tibbiyot sohasi saytlarini chiqardim — aniq axborot tuzilmasi va accessible interfeyslarga e'tibor bilan."
         ]
       },
       "datasite": {
-        "company": "DataSite Technology",
-        "role": "Frontend Developer",
-        "period": "Yan 2021 — May 2021",
+        "role": "Fullstack dasturchi",
         "location": "Toshkent, O'zbekiston",
-        "description": "Birinchi professional rol. HTML, CSS, React, WordPress, Bootstrap va Sass bilan saytlar va admin dashboardlar qurdim.",
+        "summary": "Birinchi professional ish: client-side veb-ilovalar va PHP/MySQL server mantiqi.",
         "highlights": [
-          "Bir nechta mijoz saytlarini to'liq yetkazdim",
-          "Qayta ishlatiluvchi WordPress mavzular qurdim",
-          "Muddat ichida yetkazib berish intizomini o'rgandim"
+          "Texnik topshiriqlar asosida client-side veb-ilovalar va PHP/MySQL server mantiqini ishlab chiqdim va qo'llab-quvvatladim.",
+          "Serverlarni saqlashda ishtirok etdim va mavjud kodni doimiy refaktor qildim."
         ]
+      }
+    }
+  },
+  "projects": {
+    "title": "Tanlangan ishlar",
+    "subtitle": "Production platformalar, korporativ tizimlar va open-source ishlar. Ko'pchiligi kompaniya logini ortida ishlaydi, shuning uchun kartalar havola emas, bajarilgan ishni tasvirlaydi.",
+    "visit": "Ochish",
+    "code": "Kod",
+    "status": {
+      "production": "Production'da",
+      "open-source": "Open source",
+      "delivered": "Topshirilgan",
+      "internal": "Ichki",
+      "live": "Onlayn"
+    },
+    "items": {
+      "quantum": {
+        "title": "Quantum ELD",
+        "tagline": "AQSh avtoparklari uchun compliance platformasi",
+        "description": "Eski frontend'ni React, TypeScript va Vite'ga to'liq qayta yozishga rahbarlik qildim. React Query yagona kesh qatlami, Tailwind + Radix dizayn-tizimi, route darajasida code-splitting va UI'ga aylantirilgan FMCSA talablari."
+      },
+      "expensify": {
+        "title": "Expensify / App",
+        "tagline": "Open-source moliyaviy hamkorlik mahsuloti",
+        "description": "Tarqoq jamoa yuritadigan yirik React Native kodbazasiga qat'iy review jarayoni ichida hissa qo'shaman. GitHub'ning Pull Shark va Pair Extraordinaire yutuqlarini oldim."
+      },
+      "crm": {
+        "title": "Korporativ CRM platformalar",
+        "tagline": "Ichki jamoalar uchun mijoz va savdo boshqaruvi",
+        "description": "Vue 3 va Pinia'da bir nechta CRM mahsulotlari, PostgreSQL va MySQL ustida Node.js/PHP REST API'lar bilan — sxema dizayni, so'rovlar va kundalik savdo operatsiyalari ortidagi biznes mantiq."
+      },
+      "wms": {
+        "title": "WMS / TMS tizimlar",
+        "tagline": "Ombor va transport boshqaruvi",
+        "description": "Logistika mijozlari uchun inventar, dispetcherlik va rolga asoslangan admin jarayonlari. Qayta ishlatiladigan komponent arxitekturasi, Vuex'da markazlashgan state va Docker'dagi servislar."
+      },
+      "med24": {
+        "title": "Med24 admin paneli",
+        "tagline": "Tibbiy provayder uchun operatsion konsol",
+        "description": "O'z backend API va ma'lumotlar bazasiga ega admin panel, shuningdek tibbiyot sohasi uchun Nuxt 3 vitrinalari va WordPress/PHP saytlar — telefon, planshet va desktopda moslashuvchan."
+      },
+      "portfolio": {
+        "title": "Ushbu portfolio",
+        "tagline": "Loyihalangan, qurilgan va GitHub Pages orqali joylangan",
+        "description": "React, TypeScript va Vite, Tailwind va Framer Motion bilan. Uch til, yorug' va qorong'u mavzular, silliq scroll va scroll'ga bog'liq animatsiyalar."
       }
     }
   },
   "skills": {
-    "eyebrow": "Tech stack",
-    "title": "Ajoyib mahsulotlar yaratish uchun ishlatadigan vositalarim",
-    "subtitle": "Har kuni production'da tayanadigan tanlangan texnologiyalar to'plami.",
-    "categories": {
-      "frameworks": "Frameworklar va kutubxonalar",
+    "title": "Ko'nikmalar",
+    "subtitle": "Men ularni qanday ishlatsam, shunday guruhlangan — avval frontend, keyin uning ortidagi backend va asboblar.",
+    "groups": {
       "languages": "Tillar",
-      "styling": "Styling va UI",
+      "frameworks": "Freymvorklar",
       "state": "State va ma'lumotlar",
-      "tooling": "Tooling va build",
-      "platforms": "Platformalar va infra"
+      "backend": "Backend, DevOps va AI",
+      "ui": "UI va stillar",
+      "architecture": "Arxitektura va asboblar",
+      "domains": "Sohalar"
     }
   },
-  "projects": {
-    "eyebrow": "Tanlangan ishlar",
-    "title": "Faxrlanadigan loyihalarim",
-    "subtitle": "Production ishlari, side loyihalar va open-source hissalar.",
-    "viewProject": "Loyihani ko'rish",
-    "viewCode": "Kodni ko'rish",
-    "items": {
-      "quantum": {
-        "title": "Quantum ELD Platformasi",
-        "description": "AQSh yuk tashish sanoati uchun zamonaviy ELD platformasi. Frontend React, React Query, Tailwind va Radix UI bilan qayta qurildi.",
-        "role": "Frontend muhandis"
-      },
-      "expensify": {
-        "title": "New Expensify (Open Source)",
-        "description": "GitHub'da Expensify open-source React Native ilovasiga hissa. iOS, Android va Web uchun fixlar.",
-        "role": "Open-source contributor"
-      },
-      "med24": {
-        "title": "Med24 Admin Dashboard",
-        "description": "Nuxt 3 va Tailwind Premium bilan qurilgan tibbiy platforma uchun admin paneli. Klinika operatsiyalari va bemor ma'lumotlarini soddalashtirdi.",
-        "role": "Frontend Developer"
-      },
-      "crm": {
-        "title": "Enterprise CRM Suite",
-        "description": "Vue 3, Pinia va Bootstrap-Vue bilan noldan loyihalashtirilgan bir nechta CRM platformalari. Ichki turli bo'limlarda ishlatiladi.",
-        "role": "Lead Frontend"
-      },
-      "wms": {
-        "title": "Ombor Boshqaruv Tizimi",
-        "description": "Murakkab inventarizatsiya, rol asosidagi kirish va real vaqt yangilanishlari bilan ichki WMS. Vue 3 + Pinia + custom design.",
-        "role": "Frontend muhandis"
-      },
-      "portfolio": {
-        "title": "Bu portfolio",
-        "description": "Siz ko'rib turgan sayt. React 18, Vite, Tailwind, Framer Motion va i18next bilan qurilgan. Uch tilli, to'liq responsiv, dark-modern.",
-        "role": "Dizayner va dasturchi"
-      }
-    }
+  "education": {
+    "title": "Ta'lim",
+    "college": "Toshkent davlat maishiy xizmat kolleji",
+    "degree": "O'rta maxsus ta'lim",
+    "languagesTitle": "Tillar",
+    "languages": {
+      "uzbek": "O'zbek",
+      "english": "Ingliz",
+      "russian": "Rus"
+    },
+    "native": "Ona tili",
+    "cefr": "CEFR shkalasi"
+  },
+  "contact": {
+    "title": "Birga nimadir quramiz",
+    "subtitle": "Vakansiya, mahsulot yoki yechishga arziydigan muammo bormi? Yozing — bir kun ichida javob beraman.",
+    "emailLabel": "Xat yozish",
+    "elsewhere": "Boshqa joylarda",
+    "closing": "Toshkentdaman. Butun dunyo bo'ylab masofaviy ishga va O'zbekistonda ofisga ochiqman.",
+    "copy": "Nusxalash",
+    "copied": "Nusxalandi"
+  },
+  "footer": {
+    "tagline": "Fullstack dasturchi · Toshkent",
+    "builtWith": "React, Vite, Tailwind va Framer Motion'da qurilgan.",
+    "rights": "Barcha huquqlar himoyalangan.",
+    "scrollTop": "Yuqoriga",
+    "navigation": "Navigatsiya",
+    "social": "Ijtimoiy tarmoqlar"
+  },
+  "common": {
+    "loading": "Yuklanmoqda",
+    "notFound": "Sahifa topilmadi",
+    "notFoundDesc": "Siz qidirayotgan sahifa mavjud emas yoki ko'chirilgan.",
+    "goHome": "Bosh sahifaga",
+    "theme": "Mavzuni almashtirish"
   },
   "blog": {
     "eyebrow": "Yozuvlar",
@@ -201,50 +250,13 @@
       }
     }
   },
-  "contact": {
-    "eyebrow": "Bog'lanish",
-    "title": "Birgalikda ajoyib narsa quraylik",
-    "subtitle": "Loyihangiz, ish o'rni yoki shunchaki salom aytmoqchimisiz? Mening pochtam ochiq.",
-    "form": {
-      "name": "Ismingiz",
-      "namePlaceholder": "Ali Valiyev",
-      "email": "Email",
-      "emailPlaceholder": "ali@example.com",
-      "subject": "Mavzu",
-      "subjectPlaceholder": "Nima haqida?",
-      "message": "Xabar",
-      "messagePlaceholder": "Loyihangiz, ish o'rni yoki g'oyangiz haqida...",
-      "submit": "Yuborish",
-      "submitting": "Yuborilmoqda...",
-      "success": "Xabar yuborildi! 24 soat ichida javob beraman.",
-      "error": "Xatolik yuz berdi. Iltimos, to'g'ridan-to'g'ri yozing.",
-      "validation": {
-        "nameRequired": "Ismingizni kiriting",
-        "emailRequired": "Email kiriting",
-        "emailInvalid": "To'g'ri email kiriting",
-        "messageRequired": "Xabar yozing",
-        "messageShort": "Kamida 10 ta belgi"
-      }
-    },
-    "directContact": "Yoki to'g'ridan-to'g'ri yozing",
-    "responseTime": "Odatda 24 soat ichida javob beraman",
-    "based": "Toshkentda joylashganman · Butun dunyo bo'ylab masofaviy ishlayman"
-  },
-  "footer": {
-    "tagline": "Toshkentda e'tibor bilan tayyorlangan.",
-    "builtWith": "React, Vite, Tailwind va Framer Motion bilan qurilgan.",
-    "rights": "Barcha huquqlar himoyalangan.",
-    "sections": {
-      "navigation": "Navigatsiya",
-      "social": "Ijtimoiy",
-      "legal": "Huquqiy"
-    },
-    "scrollTop": "Yuqoriga"
-  },
-  "common": {
-    "loading": "Yuklanmoqda...",
-    "notFound": "Sahifa topilmadi",
-    "notFoundDesc": "Siz qidirayotgan sahifa mavjud emas yoki ko'chirilgan.",
-    "goHome": "Bosh sahifaga"
+  "manifesto": {
+    "line": "Ma'lumotlar bazasini loyihalayman, API'ni yozaman, interfeysni quraman — va uchalasini bitta mahsulot sifatida topshiraman.",
+    "accents": [
+      "Ma'lumotlar bazasini",
+      "API'ni",
+      "interfeysni",
+      "bitta mahsulot"
+    ]
   }
 }

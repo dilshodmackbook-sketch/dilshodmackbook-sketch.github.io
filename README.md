@@ -1,13 +1,18 @@
 # Dilshod Bunyodov — Portfolio
 
-Advance darajadagi shaxsiy portfolio. **React 18 + Vite + Tailwind CSS + Framer Motion + i18next** asosida qurilgan. To'liq responsiv, 3 tilli (EN/RU/UZ), dark-modern dizayn.
+Shaxsiy portfolio. **React 18 + Vite + Tailwind CSS + Framer Motion + Lenis + i18next** asosida qurilgan. To'liq responsiv, 3 tilli (EN/RU/UZ), editorial (monoxrom + orange aksent) dizayn, yorug'/qorong'u mavzu, silliq scroll va scroll-reveal animatsiyalar.
+
+Rezyume: `public/cv-dilshod-bunyodov.pdf` — "Download CV" tugmasi shu fayldan yuklab beradi. Ma'lumotlar `src/data/*.ts` va `src/i18n/locales/*.json` ichida.
 
 ## Tech Stack
 
 - **React 18** + **React Router v6** — SPA routing va lazy loading
 - **Vite 5** — bir necha yuz millisekundlik dev start
 - **Tailwind CSS 3** — custom theme (ranglar, animatsiyalar, gradientlar)
-- **Framer Motion** — scroll va page transition animatsiyalari
+- **Framer Motion** — scroll-reveal, parallax va page transition animatsiyalari
+- **Lenis** — silliq (smooth) scroll
+- **GSAP ScrollTrigger** — scrub manifest matni, pinned gorizontal loyihalar, scroll tezligiga bog'liq marquee
+- **Three.js** — hero fonidagi sichqoncha va scroll'ga javob beradigan nuqtali to'lqin maydoni (`HeroField.tsx`, lazy yuklanadi)
 - **i18next** — EN / RU / UZ tarjimalar (localStorage'da saqlanadi)
 - **Lucide React** — modular ikonalar
 
@@ -16,11 +21,12 @@ Advance darajadagi shaxsiy portfolio. **React 18 + Vite + Tailwind CSS + Framer 
 ```
 src/
 ├── components/
-│   ├── layout/         (Navbar, Footer, BackgroundFX, LanguageSwitcher)
-│   ├── sections/       (Hero, About, Experience, Skills, Projects, Contact)
-│   └── utils/          (Loader, ScrollToTop)
-├── data/               (skills.js, experience.js, projects.js, blog.js, socials.js)
-├── hooks/              (useTypewriter, useCountUp)
+│   ├── layout/         (Navbar, Footer, LanguageSwitcher, ThemeToggle)
+│   ├── sections/       (Hero, About, Experience, Projects, Skills, Education, Contact, SectionShell)
+│   └── utils/          (Reveal, Marquee, SmoothScroll, ScrollProgress, ScrollToTop, Loader)
+├── data/               (skills, experience, projects, education, blog, socials)
+├── hooks/              (useCountUp, useActiveSection)
+├── lib/                (scroll.ts — Lenis helper)
 ├── i18n/
 │   ├── index.js
 │   └── locales/        (en.json, ru.json, uz.json)

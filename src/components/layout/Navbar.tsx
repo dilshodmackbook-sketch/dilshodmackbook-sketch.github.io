@@ -1,26 +1,33 @@
-import { useState, useEffect, type MouseEvent } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { useEffect, useMemo, useState, type MouseEvent } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Code2 } from 'lucide-react'
+import { ArrowDownToLine } from 'lucide-react'
 import LanguageSwitcher from './LanguageSwitcher'
 import ThemeToggle from './ThemeToggle'
+import { CV_FILENAME, CV_PATH } from '../../data/socials'
+import { scrollToTarget, getLenis } from '../../lib/scroll'
+import { useActiveSection } from '../../hooks/useActiveSection'
 
-interface NavLinkItem {
+interface NavItem {
+  id: string
   to: string
-  hash?: string
   label: string
   isRoute?: boolean
 }
 
+const SECTION_IDS = ['about', 'experience', 'projects', 'skills', 'contact']
+
 export default function Navbar() {
   const { t } = useTranslation()
+  const location = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const location = useLocation()
+  const isHome = location.pathname === '/'
+  const active = useActiveSection(SECTION_IDS, isHome)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
+    const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -31,199 +38,165 @@ export default function Navbar() {
   }, [location.pathname])
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
+    const lenis = getLenis()
+    if (open) {
+      document.body.style.overflow = 'hidden'
+      lenis?.stop()
+    } else {
+      document.body.style.overflow = ''
+      lenis?.start()
+    }
     return () => {
       document.body.style.overflow = ''
+      lenis?.start()
     }
   }, [open])
 
-  const isHome = location.pathname === '/'
+  const items: NavItem[] = useMemo(
+    () => [
+      { id: 'about', to: '/#about', label: t('nav.about') },
+      { id: 'experience', to: '/#experience', label: t('nav.experience') },
+      { id: 'projects', to: '/#projects', label: t('nav.projects') },
+      { id: 'skills', to: '/#skills', label: t('nav.skills') },
+      { id: 'blog', to: '/blog', label: t('nav.blog'), isRoute: true },
+      { id: 'contact', to: '/#contact', label: t('nav.contact') },
+    ],
+    [t],
+  )
 
-  const navLinks: NavLinkItem[] = [
-    { to: isHome ? '/#about' : '/', hash: '#about', label: t('nav.about') },
-    { to: isHome ? '/#experience' : '/', hash: '#experience', label: t('nav.experience') },
-    { to: isHome ? '/#skills' : '/', hash: '#skills', label: t('nav.skills') },
-    { to: isHome ? '/#projects' : '/', hash: '#projects', label: t('nav.projects') },
-    { to: '/blog', label: t('nav.blog'), isRoute: true },
-    { to: isHome ? '/#contact' : '/', hash: '#contact', label: t('nav.contact') },
-  ]
-
-  const handleAnchor = (e: MouseEvent<HTMLAnchorElement>, hash: string) => {
+  const onAnchor = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
     if (!isHome) return
     e.preventDefault()
-    const el = document.querySelector(hash)
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    setOpen(false)
+    scrollToTarget(`#${id}`, -72)
   }
+
+  const isActive = (item: NavItem) =>
+    item.isRoute ? location.pathname.startsWith(item.to) : isHome && active === item.id
 
   return (
     <>
       <motion.header
-        initial={{ y: -40, opacity: 0 }}
+        initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.4, ease: 'easeOut' }}
-        className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
-          scrolled
-            ? 'bg-bg-primary/70 backdrop-blur-xl border-b border-border'
-            : 'bg-transparent'
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+        className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,backdrop-filter] duration-500 ${
+          scrolled || open
+            ? 'border-line/10 bg-ink/80 backdrop-blur-xl'
+            : 'border-transparent bg-transparent'
         }`}
       >
-        <nav className="container-custom flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
+        <nav className="container-site flex h-16 items-center justify-between md:h-[4.5rem]">
           <Link
             to="/"
-            className="flex items-center gap-2.5 group"
+            onClick={(e) => {
+              if (isHome) {
+                e.preventDefault()
+                scrollToTarget(0, 0)
+              }
+            }}
+            className="group flex items-baseline gap-2"
             aria-label="Home"
           >
-            <div className="relative w-9 h-9 rounded-xl bg-gradient-violet-cyan flex items-center justify-center font-mono font-bold text-white shadow-glow-violet group-hover:scale-110 transition-transform">
-              D
-              <div className="absolute -inset-px rounded-xl bg-gradient-violet-cyan blur-md opacity-50 group-hover:opacity-80 transition-opacity -z-10" />
-            </div>
-            <div className="hidden sm:flex flex-col leading-tight">
-              <span className="font-semibold text-text-primary">Dilshod</span>
-              <span className="text-[10px] text-text-muted font-mono uppercase tracking-widest">
-                Frontend Engineer
-              </span>
-            </div>
+            <span className="font-mono text-[13px] font-medium tracking-tight text-fg">DB</span>
+            <span className="h-1 w-1 rounded-full bg-accent transition-transform duration-500 ease-out-expo group-hover:scale-[2.2]" />
+            <span className="hidden text-[13px] font-semibold tracking-tight text-muted transition-colors group-hover:text-fg sm:inline">
+              dilshod.bunyodov
+            </span>
           </Link>
 
-          {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) =>
-              link.isRoute ? (
-                <NavLink
-                  key={link.label}
-                  to={link.to}
-                  className={({ isActive }) =>
-                    `px-3 py-2 text-sm rounded-full transition-colors link-underline ${
-                      isActive
-                        ? 'text-text-primary'
-                        : 'text-text-secondary hover:text-text-primary'
-                    }`
-                  }
+          <ul className="hidden items-center gap-7 lg:flex">
+            {items.map((item) => (
+              <li key={item.id}>
+                <Link
+                  to={item.to}
+                  onClick={(e) => !item.isRoute && onAnchor(e, item.id)}
+                  className={`nav-link ${isActive(item) ? 'is-active' : ''}`}
                 >
-                  {link.label}
-                </NavLink>
-              ) : (
-                <a
-                  key={link.label}
-                  href={link.hash}
-                  onClick={(e) => link.hash && handleAnchor(e, link.hash)}
-                  className="px-3 py-2 text-sm rounded-full text-text-secondary hover:text-text-primary transition-colors link-underline"
-                >
-                  {link.label}
-                </a>
-              ),
-            )}
-          </div>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-          {/* Right side */}
-          <div className="flex items-center gap-2">
-            {/* Desktop-only controls */}
-            <div className="hidden lg:flex items-center gap-2">
-              <ThemeToggle />
-              <LanguageSwitcher />
-              <a
-                href={isHome ? '#contact' : '/#contact'}
-                onClick={(e) => handleAnchor(e, '#contact')}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-violet-cyan text-white text-sm font-semibold hover:shadow-glow-violet transition-all hover:scale-105"
-              >
-                <Code2 className="w-4 h-4" />
-                {t('nav.contact')}
-              </a>
-            </div>
-
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setOpen(!open)}
-              className="lg:hidden relative w-10 h-10 rounded-xl border border-border bg-bg-card/60 backdrop-blur-md flex items-center justify-center text-text-primary hover:border-accent-violet transition-colors"
-              aria-label="Toggle menu"
-              aria-expanded={open}
+          <div className="flex items-center gap-2 md:gap-3">
+            <LanguageSwitcher className="hidden sm:flex" />
+            <ThemeToggle />
+            <a
+              href={CV_PATH}
+              download={CV_FILENAME}
+              className="btn-solid btn-sm hidden md:inline-flex"
             >
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.span
-                  key={open ? 'x' : 'menu'}
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.18 }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-                </motion.span>
-              </AnimatePresence>
+              {t('nav.resume')}
+              <ArrowDownToLine className="h-3.5 w-3.5" />
+            </a>
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-label={open ? t('nav.close') : t('nav.menu')}
+              className="relative flex h-9 w-9 items-center justify-center rounded-full border border-line/[0.12] lg:hidden"
+            >
+              <span
+                className={`absolute h-px w-4 bg-fg transition-transform duration-300 ${
+                  open ? 'rotate-45' : '-translate-y-[3px]'
+                }`}
+              />
+              <span
+                className={`absolute h-px w-4 bg-fg transition-transform duration-300 ${
+                  open ? '-rotate-45' : 'translate-y-[3px]'
+                }`}
+              />
             </button>
           </div>
         </nav>
       </motion.header>
 
-      {/* Mobile menu drawer */}
       <AnimatePresence>
         {open && (
           <motion.div
+            key="mobile-menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-30 lg:hidden"
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-ink/95 backdrop-blur-xl lg:hidden"
           >
-            <motion.div
-              className="absolute inset-0 bg-bg-primary/70 backdrop-blur-md"
-              onClick={() => setOpen(false)}
-            />
-            <motion.div
-              initial={{ y: -16, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -16, opacity: 0 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="absolute top-[4.5rem] inset-x-4 rounded-3xl glass-strong p-4 shadow-card max-h-[80vh] overflow-y-auto"
-            >
-              {/* Nav links */}
-              <div className="flex flex-col mb-3">
-                {navLinks.map((link) =>
-                  link.isRoute ? (
+            <div className="container-site flex h-full flex-col pb-10 pt-24">
+              <ul className="flex flex-col">
+                {items.map((item, i) => (
+                  <motion.li
+                    key={item.id}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.08 + i * 0.05, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    className="border-b border-line/10"
+                  >
                     <Link
-                      key={link.label}
-                      to={link.to}
-                      onClick={() => setOpen(false)}
-                      className="px-4 py-3 rounded-xl text-text-primary hover:bg-bg-card transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  ) : (
-                    <a
-                      key={link.label}
-                      href={link.hash}
+                      to={item.to}
                       onClick={(e) => {
-                        if (link.hash) handleAnchor(e, link.hash)
-                        setOpen(false)
+                        if (item.isRoute) {
+                          setOpen(false)
+                          return
+                        }
+                        onAnchor(e, item.id)
                       }}
-                      className="px-4 py-3 rounded-xl text-text-primary hover:bg-bg-card transition-colors"
+                      className="flex items-baseline justify-between py-4"
                     >
-                      {link.label}
-                    </a>
-                  ),
-                )}
-              </div>
-
-              {/* Controls row */}
-              <div className="flex items-center justify-between gap-3 pt-3 border-t border-border">
-                <div className="flex items-center gap-2">
-                  <ThemeToggle />
-                  <LanguageSwitcher />
-                </div>
-                <a
-                  href={isHome ? '#contact' : '/#contact'}
-                  onClick={(e) => {
-                    handleAnchor(e, '#contact')
-                    setOpen(false)
-                  }}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-violet-cyan text-white text-sm font-semibold hover:shadow-glow-violet transition-all"
-                >
-                  <Code2 className="w-4 h-4" />
-                  {t('nav.contact')}
+                      <span className="text-3xl font-bold tracking-tighter">{item.label}</span>
+                      <span className="font-mono text-[11px] text-faint">0{i + 1}</span>
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+              <div className="mt-auto flex items-center justify-between gap-4 pt-8">
+                <LanguageSwitcher />
+                <a href={CV_PATH} download={CV_FILENAME} className="btn-solid btn-sm">
+                  {t('nav.resume')}
+                  <ArrowDownToLine className="h-3.5 w-3.5" />
                 </a>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

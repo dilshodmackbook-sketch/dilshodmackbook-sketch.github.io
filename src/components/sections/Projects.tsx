@@ -1,149 +1,190 @@
-import type { ComponentType } from 'react'
+import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import type { TFunction } from 'i18next'
-import { motion } from 'framer-motion'
-import {
-  ExternalLink,
-  Github,
-  Truck,
-  GitPullRequest,
-  Stethoscope,
-  LayoutDashboard,
-  Package,
-  Sparkles,
-  type LucideProps,
-} from 'lucide-react'
-import SectionHeader from './SectionHeader'
+import { ArrowUpRight, Github } from 'lucide-react'
+import Reveal, { LineReveal } from '../utils/Reveal'
 import { projects } from '../../data/projects'
-import type { ProjectItem, ProjectStatus } from '../../types'
+import type { ProjectItem } from '../../types'
+import { gsap, ScrollTrigger } from '../../lib/gsap'
 
-const ICONS: Record<string, ComponentType<LucideProps>> = {
-  Truck,
-  GitPullRequest,
-  Stethoscope,
-  LayoutDashboard,
-  Package,
-  Sparkles,
+const statusTone: Record<string, string> = {
+  production: 'text-emerald-500 border-emerald-500/30',
+  'open-source': 'text-accent border-accent/40',
+  delivered: 'text-sky-500 border-sky-500/30',
+  internal: 'text-muted border-line/15',
+  live: 'text-emerald-500 border-emerald-500/30',
 }
 
-export default function Projects() {
+function ProjectCard({ p }: { p: ProjectItem }) {
   const { t } = useTranslation()
-
   return (
-    <section id="projects" className="section">
-      <div className="container-custom">
-        <SectionHeader
-          eyebrow={t('projects.eyebrow')}
-          title={t('projects.title')}
-          subtitle={t('projects.subtitle')}
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {projects.map((project, idx) => (
-            <ProjectCard key={project.key} project={project} index={idx} t={t} />
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-interface ProjectCardProps {
-  project: ProjectItem
-  index: number
-  t: TFunction
-}
-
-function ProjectCard({ project, index, t }: ProjectCardProps) {
-  const Icon = ICONS[project.icon] || Sparkles
-
-  const statusColors: Record<ProjectStatus, string> = {
-    production: 'bg-accent-green/15 text-accent-green border-accent-green/30',
-    'open-source': 'bg-accent-cyan/15 text-accent-cyan border-accent-cyan/30',
-    delivered: 'bg-accent-pink/15 text-accent-pink border-accent-pink/30',
-    internal: 'bg-accent-amber/15 text-accent-amber border-accent-amber/30',
-    live: 'bg-accent-violet/15 text-accent-violet border-accent-violet/30',
-  }
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="group relative card card-hover overflow-hidden flex flex-col"
+    <article
+      data-card
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line/10 bg-ink transition-colors duration-500 hover:border-line/30 lg:w-[26rem] lg:shrink-0"
     >
-      {/* Gradient header */}
-      <div
-        className={`relative h-40 -mx-6 -mt-6 mb-5 bg-gradient-to-br ${project.gradient} overflow-hidden rounded-t-2xl`}
-      >
-        <div className="absolute inset-0 bg-bg-primary/30 backdrop-blur-sm" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-20 h-20 rounded-2xl bg-bg-primary/40 backdrop-blur-xl border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-            <Icon className="w-10 h-10 text-white" />
-          </div>
-        </div>
-        {/* Status badge */}
-        <span
-          className={`absolute top-3 right-3 text-[10px] uppercase tracking-widest font-mono px-2 py-1 rounded-full border backdrop-blur-md ${
-            statusColors[project.status] || statusColors.live
-          }`}
-        >
-          {project.status}
+      <div className="relative aspect-[16/9] overflow-hidden border-b border-line/10 bg-surface">
+        <div
+          aria-hidden
+          className="bg-grid absolute inset-0 [--grid-cell:28px] opacity-60 transition-transform duration-700 ease-out-expo group-hover:scale-110"
+        />
+        <div
+          aria-hidden
+          className="absolute -bottom-10 -right-6 h-40 w-40 rounded-full bg-accent/20 opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100"
+        />
+        <span className="absolute left-5 top-4 font-mono text-[11px] tracking-[0.2em] text-faint">{p.year.toUpperCase()}</span>
+        <span className={`absolute right-4 top-4 rounded-full border px-2.5 py-0.5 text-[10px] tracking-tight ${statusTone[p.status]}`}>
+          {t(`projects.status.${p.status}`)}
         </span>
-        {/* Noise overlay */}
-        <div className="absolute inset-0 opacity-30 mix-blend-overlay bg-noise" />
+        <span
+          data-index
+          className="absolute bottom-3 left-5 select-none text-[6rem] font-extrabold leading-none tracking-tightest text-fg/[0.08] transition-colors duration-700 group-hover:text-fg/[0.14] md:text-[7rem]"
+        >
+          {p.index}
+        </span>
       </div>
 
-      {/* Content */}
-      <div className="flex-1 flex flex-col">
-        <div className="text-[10px] font-mono uppercase tracking-widest text-text-muted mb-2">
-          {t(`projects.items.${project.key}.role`)}
-        </div>
-        <h3 className="text-lg font-semibold text-text-primary mb-2 group-hover:gradient-text transition-colors">
-          {t(`projects.items.${project.key}.title`)}
-        </h3>
-        <p className="text-sm text-text-secondary leading-relaxed mb-4 text-pretty flex-1">
-          {t(`projects.items.${project.key}.description`)}
-        </p>
+      <div className="flex flex-1 flex-col p-5 md:p-6">
+        <h3 className="text-xl font-bold tracking-tighter">{t(`projects.items.${p.key}.title`)}</h3>
+        <p className="mt-1 text-[13px] text-muted">{t(`projects.items.${p.key}.tagline`)}</p>
+        <p className="mt-4 text-[14px] leading-relaxed text-muted text-pretty">{t(`projects.items.${p.key}.description`)}</p>
 
-        {/* Techs */}
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {project.techs.map((tech) => (
-            <span key={tech} className="chip text-[10px]">
+        <div className="mt-5 flex flex-wrap gap-1.5">
+          {p.techs.map((tech) => (
+            <span key={tech} className="chip px-2.5 py-0.5 text-[11px]">
               {tech}
             </span>
           ))}
         </div>
 
-        {/* Actions */}
-        {(project.link || project.repo) && (
-          <div className="flex items-center gap-2 pt-3 border-t border-border">
-            {project.link && (
-              <a
-                href={project.link}
-                target={project.link.startsWith('http') ? '_blank' : undefined}
-                rel="noreferrer"
-                className="flex items-center gap-1.5 text-xs text-text-secondary hover:text-accent-cyan transition-colors"
-              >
-                <ExternalLink className="w-3.5 h-3.5" />
-                {t('projects.viewProject')}
+        {(p.link || p.repo) && (
+          <div className="mt-6 flex items-center gap-4 border-t border-line/10 pt-4 text-[12px] font-semibold tracking-tight">
+            {p.link && p.link !== '/' && (
+              <a href={p.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 transition-colors hover:text-accent">
+                {t('projects.visit')}
+                <ArrowUpRight className="h-3.5 w-3.5" />
               </a>
             )}
-            {project.repo && (
-              <a
-                href={project.repo}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1.5 text-xs text-text-secondary hover:text-accent-violet transition-colors"
-              >
-                <Github className="w-3.5 h-3.5" />
-                {t('projects.viewCode')}
+            {p.repo && (
+              <a href={p.repo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 transition-colors hover:text-accent">
+                <Github className="h-3.5 w-3.5" />
+                {t('projects.code')}
               </a>
             )}
           </div>
         )}
       </div>
-    </motion.div>
+    </article>
+  )
+}
+
+/**
+ * Selected work. On large screens the section pins and the cards scroll horizontally
+ * (GSAP ScrollTrigger); on smaller screens it falls back to a vertical grid.
+ */
+export default function Projects() {
+  const { t } = useTranslation()
+  const sectionRef = useRef<HTMLElement>(null)
+  const trackRef = useRef<HTMLDivElement>(null)
+  const barRef = useRef<HTMLDivElement>(null)
+  const counterRef = useRef<HTMLSpanElement>(null)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    const track = trackRef.current
+    if (!section || !track) return
+
+    const mm = gsap.matchMedia()
+
+    mm.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => {
+      const distance = () => {
+        const left = track.getBoundingClientRect().left + window.scrollX
+        return Math.max(0, left + track.scrollWidth - window.innerWidth + 48)
+      }
+      const tween = gsap.to(track, {
+        x: () => -distance(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: () => `+=${distance()}`,
+          pin: true,
+          scrub: 0.8,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            if (barRef.current) barRef.current.style.transform = `scaleX(${self.progress})`
+            if (counterRef.current) {
+              const n = Math.min(projects.length, Math.max(1, Math.round(self.progress * (projects.length - 1)) + 1))
+              counterRef.current.textContent = String(n).padStart(2, '0')
+            }
+          },
+        },
+      })
+      // Big index numbers drift as the cards travel
+      gsap.utils.toArray<HTMLElement>('[data-card]', track).forEach((card) => {
+        const idx = card.querySelector<HTMLElement>('[data-index]')
+        if (!idx) return
+        gsap.fromTo(
+          idx,
+          { xPercent: 18 },
+          {
+            xPercent: -18,
+            ease: 'none',
+            scrollTrigger: { trigger: card, containerAnimation: tween, start: 'left right', end: 'right left', scrub: true },
+          },
+        )
+      })
+    })
+
+    mm.add('(max-width: 1023px)', () => {
+      gsap.utils.toArray<HTMLElement>('[data-card]', track).forEach((card) => {
+        const idx = card.querySelector<HTMLElement>('[data-index]')
+        if (!idx) return
+        gsap.fromTo(
+          idx,
+          { yPercent: 12 },
+          { yPercent: -12, ease: 'none', scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: true } },
+        )
+      })
+    })
+
+    ScrollTrigger.refresh()
+    return () => mm.revert()
+  }, [])
+
+  return (
+    <section id="projects" ref={sectionRef} className="relative scroll-mt-20 overflow-hidden bg-ink lg:flex lg:h-screen lg:flex-col lg:justify-center">
+      <div className="container-site">
+        <LineReveal className="lg:hidden" />
+        <div className="grid gap-8 py-16 md:py-24 lg:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] lg:items-end lg:gap-20 lg:py-0 lg:pb-10">
+          <Reveal>
+            <p className="eyebrow flex items-center gap-3">
+              <span className="text-accent">03</span>
+              <span className="h-px w-6 bg-line/20" />
+              {t('sections.projects')}
+            </p>
+            <h2 className="section-title mt-4">{t('projects.title')}</h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="max-w-lg text-[15px] leading-relaxed text-muted text-pretty">{t('projects.subtitle')}</p>
+            <div className="mt-6 hidden items-center gap-4 lg:flex">
+              <span className="font-mono text-[11px] tracking-[0.2em] text-faint">
+                <span ref={counterRef}>01</span> / {String(projects.length).padStart(2, '0')}
+              </span>
+              <div className="h-px flex-1 bg-line/10">
+                <div ref={barRef} className="h-px origin-left bg-accent" style={{ transform: 'scaleX(0)' }} />
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+
+      <div className="container-site pb-16 md:pb-24 lg:pb-0">
+        <div ref={trackRef} className="relative grid gap-4 will-change-transform sm:grid-cols-2 lg:flex lg:gap-5">
+          {projects.map((p) => (
+            <ProjectCard key={p.key} p={p} />
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }

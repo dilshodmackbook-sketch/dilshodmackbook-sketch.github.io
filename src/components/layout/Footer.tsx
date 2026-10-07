@@ -1,103 +1,78 @@
-import type { ComponentType } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Github, Linkedin, Mail, ArrowUp, Heart, type LucideProps } from 'lucide-react'
+import { ArrowUp } from 'lucide-react'
 import { socials } from '../../data/socials'
-import type { SocialPlatform } from '../../types'
-
-type IconComponent = ComponentType<LucideProps>
+import { scrollToTarget } from '../../lib/scroll'
 
 export default function Footer() {
   const { t } = useTranslation()
   const year = new Date().getFullYear()
-
-  const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
-
-  const iconFor = (platform: SocialPlatform): IconComponent => {
-    const map: Record<SocialPlatform, IconComponent> = {
-      github: Github,
-      linkedin: Linkedin,
-      email: Mail,
-    }
-    return map[platform] || Mail
-  }
+  const links = socials.filter((s) => s.platform !== 'phone')
 
   return (
-    <footer className="relative z-10 border-t border-border mt-20">
-      <div className="container-custom py-10 sm:py-14">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 mb-10 sm:mb-12">
-          {/* Brand */}
-          <div className="md:col-span-5">
-            <Link to="/" className="inline-flex items-center gap-2.5 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-violet-cyan flex items-center justify-center font-mono font-bold text-white">
-                D
-              </div>
-              <div className="flex flex-col leading-tight">
-                <span className="font-semibold text-text-primary">Dilshod Bunyodov</span>
-                <span className="text-xs text-text-muted font-mono">
-                  Senior Frontend Engineer
-                </span>
-              </div>
+    <footer className="relative z-10 border-t border-line/10">
+      <div className="container-site py-10 md:py-14">
+        <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_auto_auto] md:gap-16">
+          <div>
+            <Link to="/" className="flex items-baseline gap-2">
+              <span className="font-mono text-[13px] font-medium">DB</span>
+              <span className="h-1 w-1 rounded-full bg-accent" />
+              <span className="text-[13px] font-semibold tracking-tight">Dilshod Bunyodov</span>
             </Link>
-            <p className="text-text-secondary text-sm max-w-sm">
-              {t('footer.tagline')} {t('footer.builtWith')}
-            </p>
+            <p className="mt-3 text-[13px] text-muted">{t('footer.tagline')}</p>
+            <p className="mt-1 text-[12px] text-faint">{t('footer.builtWith')}</p>
           </div>
 
-          {/* Navigation */}
-          <div className="md:col-span-3">
-            <h3 className="text-xs uppercase tracking-widest text-text-muted font-mono mb-4">
-              {t('footer.sections.navigation')}
-            </h3>
-            <ul className="space-y-2 text-sm">
-              <li><Link to="/" className="text-text-secondary hover:text-text-primary transition-colors">{t('nav.home')}</Link></li>
-              <li><Link to="/blog" className="text-text-secondary hover:text-text-primary transition-colors">{t('nav.blog')}</Link></li>
-              <li><a href="/#projects" className="text-text-secondary hover:text-text-primary transition-colors">{t('nav.projects')}</a></li>
-              <li><a href="/#contact" className="text-text-secondary hover:text-text-primary transition-colors">{t('nav.contact')}</a></li>
+          <div>
+            <p className="eyebrow mb-4">{t('footer.navigation')}</p>
+            <ul className="space-y-2 text-[13px]">
+              {['about', 'experience', 'projects', 'skills', 'contact'].map((id) => (
+                <li key={id}>
+                  <Link to={`/#${id}`} className="link-underline text-muted hover:text-fg">
+                    {t(`nav.${id}`)}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link to="/blog" className="link-underline text-muted hover:text-fg">
+                  {t('nav.blog')}
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Social */}
-          <div className="md:col-span-4">
-            <h3 className="text-xs uppercase tracking-widest text-text-muted font-mono mb-4">
-              {t('footer.sections.social')}
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {socials.map((s) => {
-                const Icon = iconFor(s.platform)
-                return (
+          <div>
+            <p className="eyebrow mb-4">{t('footer.social')}</p>
+            <ul className="space-y-2 text-[13px]">
+              {links.map((s) => (
+                <li key={s.platform}>
                   <a
-                    key={s.platform}
                     href={s.href}
-                    target={s.platform !== 'email' ? '_blank' : undefined}
+                    target={s.platform === 'email' ? undefined : '_blank'}
                     rel="noreferrer"
-                    className="w-10 h-10 rounded-xl bg-bg-card border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-accent-violet hover:bg-bg-elevated transition-all"
-                    aria-label={s.label}
+                    className="link-underline text-muted hover:text-fg"
                   >
-                    <Icon className="w-4 h-4" />
+                    {s.label}
                   </a>
-                )
-              })}
-            </div>
-            <p className="mt-4 text-xs text-text-muted">
-              dilshodbunyodov2020@gmail.com
-            </p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-border">
-          <p className="text-xs text-text-muted flex items-center gap-1.5">
-            © {year} Dilshod Bunyodov. {t('footer.rights')}
-            <span className="inline-flex items-center gap-1 ml-2">
-              Made with <Heart className="w-3 h-3 text-accent-pink fill-accent-pink" />
-            </span>
+        <div className="mt-10 flex flex-col-reverse items-start justify-between gap-4 border-t border-line/10 pt-6 sm:flex-row sm:items-center">
+          <p className="font-mono text-[11px] tracking-[0.15em] text-faint">
+            © {year} DILSHOD BUNYODOV · {t('footer.rights').toUpperCase()}
           </p>
           <button
-            onClick={scrollTop}
-            className="group flex items-center gap-1.5 text-xs text-text-secondary hover:text-text-primary transition-colors"
+            type="button"
+            onClick={() => scrollToTarget(0, 0)}
+            className="group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-faint transition-colors hover:text-fg"
           >
             {t('footer.scrollTop')}
-            <ArrowUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform" />
+            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-line/[0.12] transition-all duration-300 group-hover:border-accent group-hover:text-accent">
+              <ArrowUp className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5" />
+            </span>
           </button>
         </div>
       </div>
